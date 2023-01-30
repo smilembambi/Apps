@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+
+<!--    <ngb-alert *ngIf="error != ''" [dismissible]="true" [type]="'danger'">-->
+<!--      {{ error }}-->
+<!--    </ngb-alert>-->
+    <div [innerHTML]="description"></div>
+
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px; padding:10px">
+<!--      <app-main-input-->
+<!--        [field]="message"-->
+<!--        (sendField)="message=$event"-->
+<!--        [size]="'20'"-->
+<!--        ></app-main-input>-->
+
+      <input [(ngModel)]="message"
+             (ngModelChange)="message =$event"
+
+             style="width: 100%;"
+             id="label"
+             type="text"
+             aria-describedby="articleName-help"
+             pInputText/><br>
+
+    </div>
+
+  </div>
+
+  <!-- save -->
+  <div  class="col-md-12 p-mt-2">
+
+    <button [disabled]="message?.trim().toUpperCase() != this.word.toUpperCase()" (click)="checkText()" type="button" style="padding-top:6px; padding-bottom:6px"
+            class="btn btn-sm btn-success  chat-send  waves-effect waves-light">
+      <i  class="pi pi-check mr-2" style="font-size:13px"></i>
+      <span class="d-none d-sm-inline-block mr-1" style="font-size: 13px !important;">
+
+        {{word}}</span>
+    </button>
+    &nbsp;
+    <button (click)="close()" type="button" style="padding-top:6px; padding-bottom:6px"
+            class="btn btn-sm btn-danger  chat-send  waves-effect waves-light">
+      <i  class="pi pi-ban mr-2" style="font-size:13px"></i>
+      <span class="d-none d-sm-inline-block mr-1" style="font-size: 13px !important;">
+
+        Annuler</span>
+    </button>
+
+
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="field {{ isError ? 'error-editor' : ''}} ">
+  <label for="label"
+  >
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+
+  <div *ngIf="state=='view'" (click)="changeState()"
+       style="font-weight: 300;margin-top:10px; {{'font-size:'+size+'px'}};">
+    <div [innerHTML]="field" class="field-form-element" style="color: var(--blue-800)"></div>
+  </div>
+
+  <p-editor  *ngIf="state=='edit'" id="label"  [(ngModel)]="field"
+            (ngModelChange)="changeField($event); deleteLetter()"
+            (blur)="changeField(field)"
+            [maxlength]="limitLetter"
+
+            class="form-control-sm "
+            [style]="style">
+    <ng-template pTemplate="header">
+        <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button type="button" class="ql-italic" aria-label="Italic"></button>
+            <button type="button" class="ql-underline" aria-label="Underline"></button>
+        </span>
+    </ng-template>
+  </p-editor>
+
+<!--  <div *ngIf="origin == 'notification'" style="margin-top:3px; font-size:12px">-->
+<!--     {{ getNumberLetter() + "/" + limitLetter }}-->
+<!--  </div>-->
+
+  <div style="margin-top: -5px" *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

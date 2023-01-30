@@ -1,0 +1,11 @@
+<button (click)="executeAction()" type="button"
+        [disabled]="disabled" style="padding-top:6px; padding-bottom:6px"
+        class="btn {{sizeButton}} {{class}}  chat-send  waves-effect waves-light">
+  <i *ngIf="!loading && positionIcon == 'left'" class="{{icon}} mr-2" style="{{'font-size:'+sizeIcon+'px'}}"></i>
+  <i *ngIf="loading  && positionIcon == 'left'" class="spinner-grow mr-2" style="width: 16px; height: 16px"></i>
+  <span class="d-none d-sm-inline-block mr-1" style="font-size: 11px !important;">  {{label}}</span>
+
+  <i *ngIf="!loading  && positionIcon == 'right'" class="{{icon}} ml-2" style="{{'font-size:'+sizeIcon+'px'}}"></i>
+  <i *ngIf="loading  && positionIcon == 'right'" class="spinner-grow ml-2" style="width: 16px; height: 16px"></i>
+</button>
+

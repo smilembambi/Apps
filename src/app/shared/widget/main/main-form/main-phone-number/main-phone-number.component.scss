@@ -1,0 +1,22 @@
+
+::ng-deep  .iti input, .iti input[type=text], .iti input[type=tel] {
+  border: 1px solid #ced4da !important;
+  border-radius: 3px !important;
+  height: 40px !important;
+
+}
+
+::ng-deep .iti:enabled:hover {
+  border-color: #2196F3 !important;
+}
+
+::ng-deep .iti{
+  width: 100% !important;
+}
+
+.error-phone{
+  ::ng-deep  .iti input, .iti input[type=text], .iti input[type=tel] {
+    border: 1px solid red !important;
+    border-radius: 3px !important;
+  }
+}

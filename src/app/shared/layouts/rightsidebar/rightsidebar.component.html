@@ -1,0 +1,80 @@
+<!-- Right Sidebar -->
+
+<div class="right-bar" (clickOutside)="hide()" [exclude]="'.right-bar-toggle'">
+
+  <ngx-simplebar class="h-100">
+    <div class="rightbar-title px-3 py-4">
+      <a href="javascript:void(0);" class="right-bar-toggle float-end" (click)="hide();">
+        <i class="mdi mdi-close noti-icon" style="color:white !important;"></i>
+      </a>
+      <h5 class="m-0 mb-6">Configuration</h5>
+
+<!--      <h6 class="mt-1" style="cursor: pointer" (click)="openUserManage()">-->
+<!--        <a href="javascript:void(0);">-->
+<!--          <i class="bx bx-user-check" style="font-size:20px; margin-top: -4px; position:absolute"></i>-->
+<!--          <span class="ml-5">Utilisateurs</span>-->
+<!--        </a>-->
+<!--      </h6>-->
+<!--      <hr />-->
+
+      <h6 class="mt-1" style="cursor: pointer" (click)="openMinistryManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-hive" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Ministère</span>
+        </a>
+      </h6>
+      <hr />
+
+
+      <h6 class="mt-1" style="cursor: pointer" (click)="openPastorManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-user-voice" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Pasteur et AP</span>
+        </a>
+      </h6>
+      <hr />
+
+
+      <h6 class="mt-1" style="cursor: pointer" (click)="openRemManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-user-check" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Rem et CoRem</span>
+        </a>
+      </h6>
+      <hr />
+
+      <h6 class="mt-1" style="cursor: pointer" (click)="openStarManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-user-pin" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Star</span>
+        </a>
+      </h6>
+      <hr />
+
+
+      <h6  style="cursor: pointer" (click)="openCountryManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-map-alt" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Pays</span>
+        </a>
+
+      </h6>
+      <hr />
+
+      <h6 class="mt-1" style="cursor: pointer" (click)="openCityManage()">
+        <a href="javascript:void(0);">
+          <i class="bx bx-map-pin" style="font-size:20px; margin-top: -4px; position:absolute"></i>
+          <span class="ml-5">Ville</span>
+        </a>
+      </h6>
+      <hr />
+
+
+
+    </div>
+  </ngx-simplebar>
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>

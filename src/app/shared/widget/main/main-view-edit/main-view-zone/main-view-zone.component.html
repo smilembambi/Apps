@@ -1,0 +1,21 @@
+<div class="row" >
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Date de création'"
+      [field]="object.createdAt |  date:'dd-MM-yyyy hh:mm:ss'"
+    ></app-main-view-info>
+  </div>
+
+
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Créé par'"
+      [field]="object?.createdBy?.person?.label"
+    ></app-main-view-info>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-status [status]="object?.status"></app-main-status>
+  </div>
+
+</div>

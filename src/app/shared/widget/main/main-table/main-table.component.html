@@ -1,0 +1,287 @@
+<p-toast position="top-center" key="tc"></p-toast>
+
+<div class="row main-table table-main">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="!loading">
+
+          <button (click)="add()" *ngIf="canAdd()"  style="float: right; margin-top: -5px" type="button" class="btn btn-xs btn-success">
+            <i class="fa fa-plus mr-1"></i>
+            <span>
+              {{getTitleButtonAdd()}}
+            </span>
+          </button>
+
+
+          <button (click)="reload()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-secondary">
+            <i class="fas fa-sync mr-1"></i> Recharger
+          </button>
+
+
+          <button *ngIf="parentId || parent?._id && parent.level > 0" (click)="back()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-secondary">
+            <i class="fas fa-arrow-left mr-1"></i> Retour
+          </button>
+
+
+<!--          <button *ngIf="origin == 'event'" (click)="openMessage()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-primary">-->
+<!--            <i class="fas fa-list mr-1"></i> {{ getTitleMessage() }}-->
+<!--          </button>-->
+
+
+          <div  style="display: flex" >
+            <h6 class="card-title" style="display: flex">
+              <div style="font-size:25px; margin-top:-3px" class="{{icon}} mr-2"></div> <div>
+
+              <span *ngIf="!parentId && !idChurchMember && !idChurchEvent">{{ title}}</span>
+              <span *ngIf="parentId || idChurchMember || idChurchEvent">
+                <span class="text-color-title" *ngIf="parent">{{ parent.label }}</span> : {{title}}
+              </span>
+            </div>
+            </h6>
+          </div>
+
+
+        </div>
+
+        <div class="table-main">
+
+          <!--begin loading -->
+<!--          <app-main-loading [message]="message" *ngIf="loading" ></app-main-loading>-->
+
+          <!-- transaction info header -->
+<!--          <app-main-transaction-header *ngIf="origin=='transaction' && !loading" [objects]="objects"></app-main-transaction-header>-->
+
+          <app-main-loading-skeleton  *ngIf="loading"  [origin]="origin" [headers]="headers"></app-main-loading-skeleton>
+
+          <!-- begin table -->
+          <div style="margin-top: 20px">
+            <p-table #dt
+                     appBlockCopyPaste
+                     [(contextMenuSelection)]="selectedObject"
+                     [contextMenu]="cm"
+                     dataKey="code"
+                     [columns]="_selectedColumns"
+                     *ngIf="!loading"
+                     [value]="objects"
+                     [first]="first"
+                     (onPage)="getPage($event)"
+                     styleClass="p-datatable-gridlines p-datatable-striped"
+                     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+                     [globalFilterFields]="globalFilters"
+                     [totalRecords]="100"
+                     [paginator]="true"
+                     currentPageReportTemplate="{first} à {last} sur {totalRecords} entrées"
+                     responsiveLayout="scroll">
+
+              <ng-template pTemplate="caption">
+                <div class="row" style="margin-top: -8px !important;">
+                  <!--filter status all-->
+
+                  <div class="col-md-2" *ngIf=" origin != 'ministry' && origin != 'user' && origin != 'event' &&  !(origin=='user' && originUser == 'star' )" >
+                    <!-- all status filter -->
+                    <div >
+                      <span style="font-size: 10px !important;">Statut</span><br>
+                      <p-dropdown [options]="status"
+                                  optionLabel="label"
+                                  [disabled]="parentId != undefined"
+                                  optionValue="value"
+                                  [(ngModel)]="statusFilter"
+                                  (ngModelChange)="filter()">
+                      </p-dropdown>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6" *ngIf="origin == 'user' || origin == 'event' || (origin=='user' && originUser == 'star' )">
+                    <div class="row">
+                      <div class="col-md-4" *ngIf="origin == 'event'" >
+                        <span style="font-size: 10px !important;">Status</span><br>
+                        <p-dropdown [options]="status"
+                                    optionLabel="label"
+                                    [disabled]="parentId != undefined"
+                                    optionValue="value"
+                                    [(ngModel)]="statusFilter"
+                                    (ngModelChange)="filter()">
+                        </p-dropdown>
+                      </div>
+
+                      <div class="col-md-4" *ngFor="let elementFilter of getStatusLevelChurch()" >
+                        <div >
+                          <span style="font-size: 10px !important;">{{elementFilter.label}}</span><br>
+                          <p-dropdown [options]="elementFilter.churchesLevel"
+                                      optionLabel="label"
+                                      [disabled]="parentId != undefined"
+                                      [(ngModel)]="elementFilter.level"
+                                      (ngModelChange)="filterLevel(elementFilter.value, $event)">
+                          </p-dropdown>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="{{ origin == 'event' || origin == 'user' || (origin=='user' && originUser == 'star' )  ? 'col-md-6' : 'col-md-10' }}">
+                    <div style="display: inline-flex; float: right ">
+
+                      <!-- date creation -->
+<!--                      <div class="mr-2" style="height: 37px !important; ">-->
+<!--                        <span style="font-size: 10px !important;">{{ getLabelDate() }}</span><br>-->
+<!--                        <p-calendar inputId="date"-->
+<!--                                    #dateFilterId-->
+<!--                                    [placeholder]="getLabelDate()"-->
+<!--                                    [selectOtherMonths]="true"-->
+<!--                                    [(ngModel)]="dateFilter"-->
+<!--                                    (ngModelChange)="filter()"-->
+<!--                                    dateFormat="dd/mm/yy"-->
+<!--                                    selectionMode="range"-->
+<!--                                    (onSelect)="onSelectDateFilter()"-->
+<!--                                    [showIcon]="true">-->
+<!--                        </p-calendar>-->
+
+<!--                      </div>-->
+
+
+                      <!-- search -->
+                      <div class="p-input-icon-left ml-auto mr-1">
+                        <span style="font-size: 10px !important;">Recherche par mots clés</span><br>
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" class="table-main"
+                               [(ngModel)]="search"
+                               (input)="applyFilterGlobal($event, 'contains')"
+                               placeholder="Taper un mot clé"/>&nbsp;
+                        <button pButton class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                      </div>
+                      <div style="{{ ' width: '+ getSizeDisplayCol() +'px !important;' }}">
+                        <span style="font-size: 10px !important;">Personnaliser l'affichage</span><br>
+                        <p-multiSelect [options]="headers" [(ngModel)]="selectedColumns" optionLabel="header"
+                                       selectedItemsLabel="{0} colonne(s) selectionnée(s)" [style]="{minWidth: getSizeDisplayCol()+'px'}"
+                                       placeholder="Choisir une ou plusieurs colonne(s)"></p-multiSelect>
+                      </div>
+
+                      <div>
+                        <div class="splitMenu" style="margin-top: 24px">
+                          <p-splitButton id="splitMenu" [icon]="'pi pi-ellipsis-v'" [model]="menus"
+                                         styleClass="mr-2 mb-2">
+                          </p-splitButton>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div  class="col-md-12"  *ngIf="origin == 'tag'" style="width:40%"  >
+                    <span style="font-size: 10px !important;">Sous-voyage</span><br>
+
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" style="{{ 'min-width:'+getSize(col)+'px !important' }}">
+                    {{col.header}}
+                  </th>
+                  <th *ngIf="haveAction()" style="{{ 'min-width:'+getSizeActions()+'px !important' }}">Actions</th>
+                </tr>
+              </ng-template>
+
+              <!-- BODY -->
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pContextMenuRow]="rowData" (dblclick)="openDblClick(rowData)" (contextmenu)="onRightClick($event, rowData)"
+                    style="padding:0 !important;">
+                  <td *ngFor="let col of columns" >
+
+                    <div *ngIf="loading" style="padding:4px 0">
+                      <p-skeleton ></p-skeleton>
+                    </div>
+
+                    <div *ngIf="!loading">
+
+                      <span *ngIf="col.id =='labelCountry' ">
+                        <img style="width: 22px; border-radius:50%; height: 22px; margin-right: 5px"
+                             #img alt=""
+                             src="https://flagcdn.com/{{ rowData.alpha2Code?.toLowerCase()}}.svg">
+                      </span>
+
+                      <span *ngIf="col.id =='churchCountry' ">
+                        <img style="width: 22px; border-radius:50%; height: 22px; margin-right: 5px"
+                             #img alt=""
+                             src="https://flagcdn.com/{{ rowData.countryChurch?.alpha2Code.toLowerCase()}}.svg">
+                      </span>
+
+                      <!-- date short -->
+                      <span *ngIf="col.type == 'date'">
+                        <span *ngIf="rowData[col.field]">{{ rowData[col.field] | date:'dd-MM-yyyy à HH:mm:ss'}}</span>
+                        <span *ngIf="!rowData[col.field]">-</span>
+                      </span>
+
+                      <!-- date birthday -->
+                      <span *ngIf="col.type == 'birthday'">
+                        <span *ngIf="rowData[col.field]">{{ rowData[col.field] | date:'dd-MM-yyyy'}}</span>
+                        <span *ngIf="!rowData[col.field]">-</span>
+                      </span>
+
+                      <!-- date short -->
+                      <span *ngIf="col.type == 'icon'"><i class="{{ rowData[col.field]}}"></i></span>
+
+                      <!-- status -->
+                      <span  *ngIf="col.field =='status'" style="padding-bottom:5px" >
+                        <app-main-status [origin]="origin" [status]="rowData[col.field]"></app-main-status>
+                      </span>
+
+                      <!-- html -->
+                      <span  *ngIf="col.type =='html'" style="padding-bottom:5px" >
+                        <span [innerHTML]="rowData[col.field]"></span>
+                      </span>
+
+                      <span *ngIf="col.type =='array' && originUser == 'star' ">
+                        <span *ngFor="let m of rowData.ministries">{{m.label}}<br></span>
+                      </span>
+
+                      <!-- price -->
+                      <!--  <span *ngIf="col.id == 'tag.price'">{{ getPrice(rowData,col) }}</span>-->
+
+                      <!-- other -->
+                      <span style="{{ col.id == 'label'? 'font-weight:600': '' }}" *ngIf="col.type != 'icon' &&  col.id != 'continentCountry' && col.type != 'birthday' &&
+                      col.type != 'date' && col.field !='status' && col.type !='html'  && col.type !='array' && col.id != 'currenciesCountry' ">
+                         <span *ngIf="col.id =='codeCalling'">+</span>{{ getVar(rowData, col) }}
+                      </span>
+
+                      <span *ngIf="col.id == 'continentCountry'">{{getContinent(rowData?.data?.region)}}</span>
+                      <span *ngIf="col.id == 'currenciesCountry'">{{rowData?.data?.currencies[0].code}}</span>
+
+                      <span *ngIf="col.field == 'percent' && rowData[col.field] ">%</span>
+                      <span *ngIf="col.field == 'amount' && rowData[col.field]">FCFA</span>
+
+                    </div>
+
+                  </td>
+                  <td *ngIf="haveAction()">
+                    <div *ngIf="loading" style="padding:4px 0">
+                      <p-skeleton ></p-skeleton>
+                    </div>
+
+                    <app-main-action [data]="rowData" *ngIf="!loading"
+                                     [origin]="origin"
+                                     [originUser]="originUser"
+                                     (sendAction)="executeAction($event,rowData._id )"></app-main-action>
+                  </td>
+                </tr>
+              </ng-template>
+
+            </p-table>
+
+            <!-- nothing -->
+            <app-main-not-data *ngIf="!loading && objects?.length == 0" ></app-main-not-data>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-contextMenu  #cm appendTo="body" [model]="items"></p-contextMenu>
+
+

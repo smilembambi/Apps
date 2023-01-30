@@ -1,0 +1,29 @@
+<div class="{{ origin != 'passenger' ? 'field' : 'field-passenger' }} " >
+  <label for="label" *ngIf="id != 'templateSave'">
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view' && id != 'templateSave'" (click)="changeState()"
+       style="font-weight: 300; cursor:pointer; margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element">{{field}}</span>
+  </div>
+
+  <div class="p-inputgroup" *ngIf="state=='edit'">
+    <p-inputNumber
+      [max]="max"
+      id="label"
+      class="{{ isError ? 'ng-invalid ng-dirty' : ''}}"
+      (ngModelChange)="changeField($event)"
+      (blur)="changeField(field)"
+      [disabled]="disabled"
+      [(ngModel)]="field" mode="decimal" [minFractionDigits]="minFractionDigits"></p-inputNumber>
+    <span class="p-inputgroup-addon" style="font-size:13px">{{icon}}</span>
+  </div>
+
+
+
+  <!--         oninput="this.type!='number' ? this.value=this.value.replace(/[^0-9]/g,'') : ''"-->
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

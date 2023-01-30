@@ -1,0 +1,11 @@
+<span *ngFor="let action of actions">
+  <a *ngIf="can(action)" (click)="sendActionLabel(action.label)" href="javascript:void(0);"
+     class="text-primary mr-2" pTooltip="{{action.title}}" >
+  <i [class]="action.class" style="font-size:17px !important;"></i></a>
+</span>
+
+
+<!--<a *ngIf="canCancel()" (click)="sendActionLabel('cancel')"   style="cursor: pointer;" href="javascript:void(0);" class=" text-danger" ><i-->
+<!--  class="fa fa-times text-danger" style="font-size: 17px" pTooltip="Annuler la réservation"></i></a>-->
+
+

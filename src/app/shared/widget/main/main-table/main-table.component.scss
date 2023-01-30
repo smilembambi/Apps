@@ -1,0 +1,64 @@
+.card-body {
+  padding: 20px !important;
+}
+
+.table-main{
+  ::ng-deep .p-inputtext    {
+    width: 150px !important;
+  }
+}
+
+
+
+.splitMenu{
+  ::ng-deep .p-button.p-button-icon-only {
+    border: none !important;
+    background-color: transparent !important;
+  }
+}
+
+
+::ng-deep .p-button.p-button-icon-only {
+  width: 25px !important;
+}
+
+
+app-context-menu {
+  width: 100px;
+  background: #2d2d2d;
+  color: #fff;
+  padding: 15px;
+}
+
+::ng-deep{
+  .main-table .p-calendar-w-btn .p-datepicker-trigger {
+    height: 25px !important;
+  }
+}
+
+
+.btn-gris {
+  background-color: #aaa !important;
+  color: #ccc !important;
+}
+
+::ng-deep {
+  .alert-warning {
+    padding: 5px 10px !important;
+    margin-right: 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+button{
+  font-size: 11px !important;
+}
+.card-title {
+  padding: 0 !important;
+}
+
+::ng-deep {
+  .p-contextmenu {
+    width: auto !important;
+  }
+}

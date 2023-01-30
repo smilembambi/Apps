@@ -1,0 +1,19 @@
+
+
+.main-date-form{
+
+  ::ng-deep .p-button.p-button-icon-only {
+    border: 1px solid #aeb0b3 !important;
+    padding: 6px !important;
+    height: 41px !important;
+  }
+
+  ::ng-deep .p-calendar-w-btn .p-inputtext {
+    font-size: 13px !important;
+    height: 41px !important;
+  }
+
+  ::ng-deep .p-calendar {
+    width: 100% !important;
+  }
+}

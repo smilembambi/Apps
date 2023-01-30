@@ -1,0 +1,84 @@
+<!-- view -->
+<!--<div *ngIf="state=='edit' && action != 'add'" style=" position: absolute; float: right; right: 80px;   margin-top: -45px">-->
+<!--  <span (click)="state='view'; changeHeader()" style="font-size: 14px; cursor: pointer; color: var(&#45;&#45;primary-color)">-->
+<!--    <i class="far fa-eye mr-1"></i> Visualiser</span>-->
+<!--</div>-->
+
+<!-- edit zone -->
+<div class="row">
+
+  <div class="col-md-12" *ngIf="msgError!=''">
+    <ngb-alert [dismissible]="false" type="danger">
+      {{msgError}}
+    </ngb-alert>
+  </div>
+
+
+  <!-- label -->
+  <div class="col-md-12">
+    <app-main-input
+      [field]="ministry.label"
+      (sendField)="ministry.label=$event; msgError=''"
+      [state]="state"
+      (sendState)="state=$event; changeHeader()"
+      [size]="'20'"
+      [label]="'Nom du ministère'"></app-main-input>
+  </div>
+
+  <!-- Minister -->
+  <div class="col-md-12">
+    <app-main-auto-complete
+      [field]="ministry.manager"
+      (sendField)="ministry.manager=$event"
+      (sendState)="state =$event; changeHeader()"
+      [options]="users"
+      [source]="'manager'"
+      [state]="state"
+      [action] = 'false'
+      [label]="'Ministre'"></app-main-auto-complete>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-editor
+      [size]="'5'"
+      [id]="'description'"
+      [field]="ministry.description"
+      (sendField)="ministry.description = $event"
+      [label]="'Description'"></app-main-editor>
+  </div>
+
+  <!-- save -->
+  <div *ngIf="state=='edit'" class="col-md-12 ">
+    <br>
+    <app-main-button [label]="'Enregistrer'"
+                     [icon]="'pi pi-save'"
+                     [loading]="loading"
+                     [disabled]="loading"
+                     [class]="'btn-primary'"
+                     (sendAction)="add()"
+    ></app-main-button>
+  </div>
+
+</div>
+
+<!-- view zone -->
+<div class="row" *ngIf="state=='view'">
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Date de création'"
+      [field]="ministry.createdAt | date:'dd-MM-yyyy hh:mm:ss'"
+    ></app-main-view-info>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Créé par'"
+      [field]="ministry?.createdBy?.person?.label"
+    ></app-main-view-info>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-status [status]="ministry?.status"></app-main-status>
+  </div>
+
+</div>

@@ -1,0 +1,186 @@
+<p-toast position="top-center" key="tc"></p-toast>
+
+
+<div class="row main-table table-main">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div >
+
+
+          <button [disabled]="loading" (click)="saveList()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-success">
+            <i *ngIf="!loading" class="fas fa-save mr-2"></i>
+            <i *ngIf="loading" class="spinner-grow mr-2" style="width: 13px; height: 13px"></i>
+            Enregistrer
+          </button>
+
+          <button  [disabled]="loading" (click)="reload()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-secondary">
+            <i *ngIf="!loading" class="fas fa-sync   mr-2"></i>
+            <i *ngIf="loading" class="spinner-grow mr-2" style="width: 13px; height: 13px"></i>
+            Recharger
+          </button>
+
+          <button  [disabled]="loading" (click)="back()"  style="float: right; margin-top: -5px" type="button" class="mr-2 btn btn-xs btn-secondary">
+            <i class="fas fa-arrow-left mr-1"></i> Retour
+          </button>
+
+          <div  style="display: flex" >
+            <h6 class="card-title" style="display: flex">
+              <div style="font-size:20px; margin-top:-3px" class="ri-user-follow-line mr-2"></div> <div>
+              <span >{{ title}}</span>
+            </div>
+            </h6>
+          </div>
+
+
+        </div>
+        <div *ngIf="event" style="background-color: whitesmoke; padding: 20px; margin-top:30px; line-height:25px ">
+          <div class="row">
+            <div class="col-md-6">Eglise : <span style="font-weight: 700">{{ event.church.label }}</span></div>
+            <div class="col-md-6">Type d'évenement : <span style="font-weight: 700">{{ event.typeEvent.label }}</span></div>
+
+            <div class="col-md-6">Localisation : <span style="font-weight: 700">{{ event.church.city.label }} / {{ event.church.city.country.label }}</span></div>
+            <div class="col-md-6">Nom d'évenement : <span style="font-weight: 700">{{ event.label }}</span></div>
+
+           <div class="col-md-6">Code : <span style="font-weight: 700">{{ event.church.codeObject }}</span></div>
+           <div class="col-md-6">Date d'évenement : <span style="font-weight: 700">{{ event.dateEvent | date:'dd-MM-yyyy' }}</span></div>
+
+          </div>
+        </div>
+
+        <div *ngIf="event" style="margin-top:25px; text-align:center;" class="text-color-icc-2" >
+          <h1 style="font-size:23px">
+            Feuille de présence du
+            <span style="font-weight: 600">
+              <span>{{ getNameDay(event.dateEvent)}}</span>
+              <span class="text-color-icc-1">{{ getDayDetail(event.dateEvent) }}</span>
+            </span>
+
+          </h1>
+          <hr>
+        </div>
+
+        <div class="table-main">
+
+          <!--begin loading -->
+          <!--          <app-main-loading [message]="message" *ngIf="loading" ></app-main-loading>-->
+
+          <!-- transaction info header -->
+          <!--          <app-main-transaction-header *ngIf="origin=='transaction' && !loading" [objects]="objects"></app-main-transaction-header>-->
+
+          <app-main-loading-skeleton [paginator]="false"  *ngIf="loading"  [origin]="origin" [headers]="headers"></app-main-loading-skeleton>
+
+          <!-- begin table -->
+          <div style="margin-top: 20px">
+
+            <!-- table -->
+            <table class="table table-sm" style="margin-top: 50px; overflow-x: auto">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th style="text-align:center">Présent</th>
+                <th style="text-align:center">Absent</th>
+<!--                <th style="text-align:center"></th>-->
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let list of presenceList">
+                <td  style="display: table-cell; vertical-align: middle;">
+                  <div (click)="memberSelected = list.member ; opMember.toggle($event)">
+                     <span *ngIf="list.isNewMember">
+                    <i class="ri-medal-2-line  text-color-icc-1" style=" font-size: 30px; position: absolute;margin-top: -12px;"></i>
+                  </span>
+                    <span style="font-size: 15px;" class="{{list.isNewMember ? 'ml-6' : '' }}">{{list?.member?.label}}</span>
+                    <span *ngIf="list.member?.phone"> ({{ list.member.phone.e164Number }})</span>
+
+                  </div>
+
+                </td>
+                <td style="text-align:center">
+                  <i (click)="changeList(list,'P'); " class="ri-checkbox-circle-fill cursor-pointer {{ list.isPresent == 'P' ? 'success'  : 'no-select'  }}" style="font-size:30px"></i>
+                </td>
+                <td style="text-align:center">
+                  <i (click)="changeList(list,'A'); op.toggle($event)" class="ri-close-circle-fill cursor-pointer {{ list.isPresent == 'A' || list.isPresent == 'RA'  ? 'danger'  : 'no-select'  }}"  style="font-size:30px"></i>
+                </td>
+
+<!--                <td  style="display: table-cell; vertical-align: middle;">-->
+<!--                  <button pButton pRipple type="button" label="Valider" class="p-button-outlined p-button-rounded p-button-secondary"></button></td>-->
+
+              </tr>
+
+              </tbody>
+            </table>
+            <!-- end table -->
+
+
+
+            <!-- nothing -->
+            <app-main-not-data *ngIf="!loading && objects?.length == 0" ></app-main-not-data>
+
+
+          </div>
+
+          <div style="text-align: center; margin-top: 15px">
+            <button  [disabled]="loading" (click)="saveList()"   type="button" class="mr-2 btn btn-lg btn-success">
+              <i *ngIf="!loading" class="fas fa-save mr-1"></i>
+              <i *ngIf="loading" class="spinner-grow mr-2" style="width: 16px; height: 16px"></i>
+              Enregistrer
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+
+    <div *ngFor="let tAbsence of typeAbsences" class="field-checkbox">
+
+        <p-radioButton [inputId]="tAbsence.key" name="category" [value]="tAbsence"
+                       [(ngModel)]="selectedTypeAbsence" [disabled]="tAbsence.value === 'R'"></p-radioButton>
+
+        <label style="margin-top:5px" [for]="tAbsence.value">{{ tAbsence.label }}</label>
+
+    </div>
+
+    <div style="margin-top:15px; display:flex; justify-content: center  ">
+      <button (click)="confirmTypeAbsence(); op.hide()" pButton icon="pi pi-check" label="Confirmer"></button>
+    </div>
+
+  </ng-template>
+</p-overlayPanel>
+
+
+
+<p-overlayPanel #opMember>
+  <ng-template pTemplate>
+
+
+      <div *ngIf="memberSelected" style=" margin-top:10px; line-height:25px; font-size: 16px ">
+
+          <div>Prénom et Nom :
+            <span style="font-weight: 500; " class="text-color-icc-1">
+              {{ memberSelected.sex=='M' ? 'Mr.' : 'Mme.' }}  {{ memberSelected.label }}
+            </span>
+          </div>
+          <div>Téléphone : <span style="font-weight: 500" class="text-color-icc-1">{{ memberSelected.phone.e164Number }}</span></div>
+
+          <div>Adresse : <span style="font-weight: 500" class="text-color-icc-1">{{ memberSelected.address  }}</span></div>
+          <div>Localisation : <span style="font-weight: 500" class="text-color-icc-1">{{ memberSelected.city.label  }} / {{ memberSelected.city.country.label }}</span></div>
+
+          <div>Date d'anniversaire : <span style="font-weight: 500" class="text-color-icc-1">{{ event.dateEvent | date:'dd-MM-yyyy' }}</span></div>
+
+      </div>
+
+    <div style="margin-top:15px; display:flex; justify-content: center  ">
+      <button (click)="opMember.hide()" pButton icon="pi pi-times" label="Fermer"></button>
+    </div>
+
+  </ng-template>
+</p-overlayPanel>

@@ -1,0 +1,71 @@
+<!-- begin table -->
+<p-table #dt
+         appBlockCopyPaste
+         dataKey="code"
+         [value]="objects"
+         [columns]="_selectedColumns"
+         styleClass="p-datatable-gridlines p-datatable-striped"
+         [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+         [totalRecords]="100"
+         [paginator]="paginator"
+         currentPageReportTemplate="{first} à {last} sur {totalRecords} entrées"
+         responsiveLayout="scroll">
+
+  <ng-template pTemplate="caption">
+    <div class="row" style="margin-top: -8px !important;">
+      <!--filter status all-->
+      <div class="col-md-2">
+
+        <!-- all status filter -->
+        <div *ngIf="origin != 'transaction' &&
+                              origin != 'voucher' &&
+                              origin != 'discount' &&
+                              origin != 'promotional' &&
+                              origin != 'selling'  &&
+                              origin != 'trip' &&
+                              origin != 'booking'  &&
+                              origin != 'notification' &&
+                              origin != 'received' &&
+                              origin != 'ticket' &&
+                              origin != 'tag' &&
+                              origin != 'story' &&
+                              origin != 'rating'">
+          <span style="font-size: 10px !important;">Statut</span><br>
+
+        </div>
+
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" style="{{ 'min-width:'+getSize(col)+'px !important' }}">
+        {{col.header}}
+      </th>
+      <th style="{{ 'min-width:'+getSizeActions()+'px !important' }}">Actions</th>
+    </tr>
+  </ng-template>
+
+
+  <!-- BODY -->
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pContextMenuRow]="rowData" >
+      <td *ngFor="let col of columns" >
+        <div style="padding:4px 0">
+          <p-skeleton ></p-skeleton>
+        </div>
+
+      </td>
+      <td>
+        <div  style="padding:4px 0">
+          <p-skeleton ></p-skeleton>
+        </div>
+
+      </td>
+    </tr>
+  </ng-template>
+
+
+</p-table>

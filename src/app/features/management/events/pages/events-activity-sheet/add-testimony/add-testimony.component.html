@@ -1,0 +1,46 @@
+<!-- edit zone -->
+<div class="row">
+
+
+  <!-- label -->
+  <div class="col-md-12">
+    <app-main-input
+      [field]="testimony.name"
+      (sendField)="testimony.name=$event;"
+      [state]="state"
+      [size]="'20'"
+      [label]="'Nom et/ou Prénom'"></app-main-input>
+  </div>
+
+  <!-- code city -->
+  <div class="col-md-12">
+    <app-main-date
+      [field]="testimony.dateTestimony"
+      (sendField)="testimony.dateTestimony=$event"
+      [state]="state"
+      [size]="'20'"
+      [label]="'Date du témoignage'"></app-main-date>
+  </div>
+
+  <div class="col-md-12">
+    <!-- editor -->
+    <app-main-editor
+      [state]="state"
+      [size]="'15'"
+      [field]="testimony.testimony"
+      (sendField)="testimony.testimony =$event"
+      [label]="'Témoignage'"></app-main-editor>
+  </div>
+
+
+  <!-- save -->
+  <div *ngIf="state=='edit'" class="col-md-12 ">
+    <app-main-button [label]="'Enregistrer le témoignage'"
+                     [icon]="'pi pi-save'"
+                     [class]="'btn-primary'"
+                     (sendAction)="add()"
+    ></app-main-button>
+  </div>
+
+</div>
+

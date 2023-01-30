@@ -1,0 +1,435 @@
+{
+  "HEADER": {
+    "SEARCH": "Recherche...",
+    "MEGA_MENU": "Mega Menu",
+    "NOTIFICATIONS": {
+      "TITLE": "Notifications",
+      "VIEW_ALL": "Voire tout",
+      "LOAD_MORE": "Voire plus..",
+      "FIRST": {
+        "TITLE": "Votre commande est passée",
+        "TEXT": "Si plusieurs langues fusionnent la grammaire",
+        "TIME": "Il y a 3 min"
+      },
+      "SECOND": {
+        "TITLE": "James Lemire",
+        "TEXT": "Cela ressemblera à un anglais simplifié.",
+        "TIME": "Il y a 1h"
+      },
+      "THIRD": {
+        "TITLE": "Votre article est expédié",
+        "TEXT": "Si plusieurs langues fusionnent la grammaire",
+        "TIME": "Il y a 3 min"
+      },
+      "FOUR": {
+        "TITLE": "Votre article est expédié",
+        "TEXT": "Si plusieurs langues fusionnent la grammaire",
+        "TIME": "Il y a 3 min"
+      }
+    },
+    "SETTINGS": "Settings",
+    "UI": {
+      "TITLE": "UI Components",
+      "LIGHTBOX": "LightBox",
+      "RANGE_SLIDER": "Range Slider",
+      "SWEET_ALERT": "Sweet Alert",
+      "RATING": "Rating",
+      "FORMS": "Forms",
+      "TABLES": "Tables",
+      "CHARTS": "Charts"
+    },
+    "APPLICATIONS": {
+      "TITLE": "Applications",
+      "ECOMMERCE": "Ecommerce",
+      "CALENDAR": "Calendar",
+      "EMAIL": "Email",
+      "PROJECTS": "Projects",
+      "TASKS": "Tasks",
+      "CONTACTS": "Contacts"
+    },
+    "EXTRA_PAGES": {
+      "TITLE": "Extra Pages",
+      "LIGHT_SIDEBAR": "Light Sidebar",
+      "COMPACT_SIDEBAR": "Compact Sidebar",
+      "HORIZONTAL_LAYOUT": "Horizontal layout",
+      "MAINTENANCE": "Maintenance",
+      "COMING SOON": "Coming Soon",
+      "TIMELINE": "Timeline",
+      "FAQ": "FAQs"
+    },
+    "LOGIN": {
+      "PROFILE": "Profile",
+      "MY_WALLET": "My Wallet",
+      "SETTINGS": "Settings",
+      "LOCK_SCREEN": "Lock screen",
+      "LOGOUT": "Logout"
+    }
+  },
+  "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "ANALYSE": {
+      "TEXT": "Analyse"
+    },
+    "DASHBOARDS": {
+      "TEXT": "Tableau de bord",
+      "BADGE": "04",
+      "LIST": {
+        "TRAFFIC": "Traffic"
+      }
+    },
+    "BI": {
+      "TEXT": "Business intelligence",
+      "BADGE": "04"
+    },
+    "LAYOUTS": {
+      "TEXT": "Layouts",
+      "LIST": {
+        "HORIZONTAL": "Horizontal",
+        "LIGHTSIDEBAR": "Light Sidebar",
+        "COMPACTSIDEBAR": "Compact Sidebar",
+        "ICONSIDEBAR": "Icons Sidebar",
+        "BOXED": "Boxed Layout",
+        "COLOREDSIDEBAR": "Colored Sidebar",
+        "VERTICAL": "Vertical",
+        "LIGHTTOPBAR": "Light Topbar",
+        "COLOREDHEADER": "Colored Header",
+        "SCROLLABLE": "Scrollable"
+      }
+    },
+    "EXPLOITATION": {
+      "TEXT": "Exploitation"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendar"
+    },
+    "CHAT": {
+      "TEXT": "Chat",
+      "BADGE": "New"
+    },
+    "FILEMANAGER": {
+      "TEXT": "File Manager",
+      "BADGE": "New"
+    },
+    "ECOMMERCE": {
+      "TEXT": "Ecommerce",
+      "LIST": {
+        "PRODUCTS": "Products",
+        "PRODUCTDETAIL": "Product Detail",
+        "ORDERS": "Orders",
+        "CUSTOMERS": "Customers",
+        "CART": "Cart",
+        "CHECKOUT": "Checkout",
+        "SHOPS": "Shops",
+        "ADDPRODUCT": "Add Product"
+      }
+    },
+    "STOPOVER": {
+      "TEXT": "Escales",
+      "LIST": {
+        "ENTRY_REQUEST": "Demande d'entrée",
+        "CANCELLATION_REQUEST": "Demande d'annulation",
+        "DISEMBARKATION_REQUEST": "Demande débarquement",
+        "MOVEMENT_REQUEST": "Demande de mouvement",
+        "MANIFEST_REQUEST": "Demande de manifeste",
+        "CHECK_REQUEST": "Demande de vérification",
+        "INVOICE_REQUEST": "Demande de facture",
+        "OPERATIONS_PLANNING": "Planification opérations"
+      }
+    },
+    "MERCHANDISE": {
+      "TEXT": "Marchandises",
+      "LIST": {
+        "DATA_REPOSITORY": "Référentiel de donnée",
+        "LOADING": "Chargement",
+        "UNLOADING": "Dechargement"
+      }
+    },
+
+    "CRYPTO": {
+      "TEXT": "Crypto",
+      "LIST": {
+        "WALLET": "Wallet",
+        "BUY/SELL": "Buy/Sell",
+        "EXCHANGE": "Exchange",
+        "LENDING": "Lending",
+        "ORDERS": "Orders",
+        "KYCAPPLICATION": "KYC Application",
+        "ICOLANDING": "ICO Landing"
+      }
+    },
+
+    "DOMAIN": {
+      "TEXT": "Domaines",
+      "LIST": {
+        "BUNDLES": "Lots",
+        "DEMARCATION_PLAN": "Plan de bornage",
+        "OCCUPANCY_REQUEST": "Demande d'occupation",
+        "GUARANTEES_INSURANCE": "Cautions et assurance",
+        "CONTRACT": "Contrat",
+        "ELECTRICITY": "Electricité",
+        "WATER": "Eau"
+      }
+    },
+
+
+    "EMAIL": {
+      "TEXT": "Email",
+      "LIST": {
+        "INBOX": "Inbox",
+        "READEMAIL": "Read Email",
+        "TEMPLATE": {
+          "BADGE": "New",
+          "TEXT": "Template",
+          "LIST": {
+            "BASIC": "Basic Action",
+            "ALERT": "Alert Email",
+            "BILLING": "Billing Email"
+          }
+        }
+      }
+    },
+    "INVOICES": {
+      "TEXT": "Invoices",
+      "LIST": {
+        "INVOICELIST": "Invoice List",
+        "INVOICEDETAIL": "Invoice Detail"
+      }
+    },
+    "PROJECTS": {
+      "TEXT": "Projects",
+      "LIST": {
+        "GRID": "Projects Grid",
+        "PROJECTLIST": "Projects List",
+        "OVERVIEW": "Project Overview",
+        "CREATE": "Create New"
+      }
+    },
+    "TASKS": {
+      "TEXT": "Tasks",
+      "LIST": {
+        "TASKLIST": "Task List",
+        "KANBAN": "Kanban Board",
+        "CREATETASK": "Create Task"
+      }
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts",
+      "LIST": {
+        "USERGRID": "User Grid",
+        "USERLIST": "User List",
+        "PROFILE": "Profile"
+      }
+    },
+    "BLOG": {
+      "TEXT": "Blog",
+      "BADGE": "New",
+      "LIST": {
+        "BLOGLIST": "Blog List",
+        "BLOGGRID": "Blog Grid",
+        "DETAIL": "Blog Details"
+      }
+    },
+    "PAGES": {
+      "TEXT": "Pages"
+    },
+    "MANAGE": {
+      "TEXT": "Gestion"
+    },
+    "CITY_CHURCH": {
+      "TEXT": "Les eglises"
+    },
+    "LOCAL_CHURCH": {
+      "TEXT": "Eglises locales"
+    },
+    "HOME_CHURCH": {
+      "TEXT": "Eglises de maison"
+    },
+    "MEMBER": {
+      "TEXT": "Les âmes"
+    },
+    "TRAINING": {
+      "TEXT": "Formations"
+    },
+    "EVENTS": {
+      "TEXT": "Les evenements"
+    },
+    "USERS": {
+      "TEXT": "Utilisateurs"
+    },
+    "EVANGELIZE": {
+      "TEXT": "Evangélisation"
+    },
+    "USER": {
+      "TEXT": "Les utilisateurs"
+    },
+    "STAR": {
+      "TEXT": "Les star"
+    },
+    "PASTOR": {
+      "TEXT": "Les pasteurs"
+    },
+    "MINISTRY": {
+      "TEXT": "Les ministères"
+    },
+    "REM": {
+      "TEXT": "Les REM"
+    },
+
+    "AUTHENTICATION": {
+      "TEXT": "Authentication",
+      "BADGE": "New",
+      "LIST": {
+        "LOGIN": "Login",
+        "LOGIN2": "Login 2",
+        "REGISTER": "Register",
+        "REGISTER2": "Register 2",
+        "RECOVERPWD": "Recover Password",
+        "RECOVERPWD2": "Recover Password 2",
+        "LOCKSCREEN": "Lock screen",
+        "LOCKSCREEN2": "Lock screen 2",
+        "CONFIRMMAIL": "Confirm Mail",
+        "CONFIRMMAIL2": "Confirm Mail 2",
+        "EMAILVERIFICATION": "Email verification",
+        "EMAILVERIFICATION2": "Email verification 2",
+        "TWOSTEPVERIFICATION": "Two step verification",
+        "TWOSTEPVERIFICATION2": "Two step verification 2"
+      }
+    },
+    "UTILITY": {
+      "TEXT": "Utility",
+      "LIST": {
+        "STARTER": "Starter Page",
+        "MAINTENANCE": "Maintenance",
+        "TIMELINE": "Timeline",
+        "FAQS": "FAQs",
+        "PRICING": "Pricing",
+        "ERROR404": "Error 404",
+        "ERROR500": "Error 500"
+      }
+    },
+    "COMPONENTS": {
+      "TEXT": "Components"
+    },
+    "COMMUNICATION": {
+      "TEXT": "Communication"
+    },
+    "UIELEMENTS": {
+      "TEXT": "UI Elements",
+      "LIST": {
+        "ALERTS": "Alerts",
+        "BUTTONS": "Buttons",
+        "CARDS": "Cards",
+        "CAROUSEL": "Carousel",
+        "DROPDOWNS": "Dropdowns",
+        "GRID": "Grid",
+        "IMAGES": "Images",
+        "LIGHTBOX": "Lightbox",
+        "MODALS": "Modals",
+        "RANGESLIDER": "Range Slider",
+        "PROGRESSBAR": "Progress Bars",
+        "PLACEHOLDER": "Placeholder",
+        "SWEETALERT": "Sweet Alert",
+        "TABS": "Tabs & Accordions",
+        "TYPOGRAPHY": "Typography",
+        "VIDEO": "Video",
+        "GENERAL": "General",
+        "COLORS": "Colors",
+        "CROPPER": "Image Cropper"
+      }
+    },
+
+    "INTERFACING": {
+      "TEXT": "Interfaçage",
+      "LIST": {
+        "EXPORT": "Exporter",
+        "IMPORT": "Importer"
+      }
+    },
+    "PCS": {
+      "TEXT": "PCS",
+      "LIST": {
+        "EXPORT": "Exporter",
+        "IMPORT": "Importer"
+      }
+    },
+
+    "DOCUMENT": {
+      "TEXT": "Document "
+    },
+    "GED": {
+      "TEXT": "Gestion électronique de doc. "
+    },
+    "SHARED_DOCUMENTS": {
+      "TEXT": "Document partagé"
+    },
+    "MY_DOCUMENTS": {
+      "TEXT": "Mes documents"
+    },
+    "ARCHIVE": {
+      "TEXT": "Archives"
+    },
+
+
+    "FORMS": {
+      "TEXT": "Forms",
+      "BADGE": "09",
+      "LIST": {
+        "ELEMENTS": "Form Elements",
+        "VALIDATION": "Form Validation",
+        "ADVANCED": "Form Advanced",
+        "EDITOR": "Form Editor",
+        "FILEUPLOAD": "Form File Upload",
+        "REPEATER": "Form Repeater",
+        "WIZARD": "Form Wizard",
+        "MASK": "Form Mask",
+        "LAYOUTS": "Form Layouts"
+      }
+    },
+    "TABLES": {
+      "TEXT": "Tables",
+      "LIST": {
+        "BASIC": "Basic Tables",
+        "ADVANCED": "Advanced Table"
+      }
+    },
+    "CHARTS": {
+      "TEXT": "Charts",
+      "LIST": {
+        "APEX": "Apex Chart",
+        "CHARTJS": "Chartjs Chart",
+        "CHARTIST": "Chartist Chart",
+        "ECHART": "E Chart"
+      }
+    },
+    "ICONS": {
+      "TEXT": "Icons",
+      "LIST": {
+        "BOXICONS": "Boxicons",
+        "MATERIALDESIGN": "Material Design",
+        "DRIPICONS": "Dripicons",
+        "FONTAWESOME": "Font Awesome"
+      }
+    },
+    "MAPS": {
+      "TEXT": "Maps",
+      "LIST": {
+        "GOOGLEMAP": "Google Maps"
+      }
+    },
+    "MULTILEVEL": {
+      "TEXT": "Multi Level",
+      "LIST": {
+        "LEVEL1": {
+          "1": "Level 1.1",
+          "2": "Level 1.2",
+          "LEVEL2": {
+            "1": "Level 2.1",
+            "2": "Level 2.2"
+          }
+        }
+      }
+    }
+  }
+}

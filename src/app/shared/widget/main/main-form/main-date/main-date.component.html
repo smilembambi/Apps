@@ -1,0 +1,36 @@
+<div class="{{ origin == 'passenger' ? 'field-passenger' : origin == 'under' ? 'field-under' : 'field' }} main-date-form" >
+  <label for="label">
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view'" (click)="changeState()"
+       style="font-weight: 300; cursor:pointer; margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element">{{ field | date:'dd-MM-yyyy'}}</span>
+  </div>
+
+
+  <p-calendar
+              [(ngModel)]="field"
+              *ngIf="state=='edit'"
+              (ngModelChange)="changeField($event)"
+              (blur)="changeField(field)"
+              class="{{ isError ? 'ng-invalid ng-dirty' : ''}}"
+              id="label"
+              #dateFilterId
+              inputId="date"
+              [maxDate]="max"
+              [minDate]="min"
+              [defaultDate]="defaultDate"
+              [yearNavigator]="true"
+              [selectOtherMonths]="true"
+              dateFormat="dd/mm/yy"
+              [showTime]="showTime()"
+              [selectionMode]="selectionMode"
+              (onSelect)="onSelectDateFilter()"
+              [showIcon]="true">
+  </p-calendar>
+  <br>
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

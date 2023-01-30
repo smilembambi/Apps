@@ -1,0 +1,422 @@
+
+// dropdown
+.dropdown-toggle {
+    &:after {
+        display: none;
+    }
+}
+
+
+
+.menu-title{
+  color: #ffd44f !important;
+  font-size: 12px !important;
+}
+
+
+#sidebar-menu ul li ul.sub-menu li a {
+  padding: 0.4rem 0.5rem 0.4rem 2.7rem !important;
+  font-size: 12px !important;
+  color: #545a6d;
+}
+
+
+
+
+// define size header table
+.p-datatable .p-datatable-thead > tr > th {
+  font-size: 12px !important;
+}
+
+// define size body table
+.p-datatable .p-datatable-tbody > tr > td {
+  font-size: 13px !important;
+}
+
+
+//define size paginator
+.p-paginator .p-paginator-current {
+  font-size: 13px !important;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  font-size: 12px !important;
+}
+
+.p-paginator .p-dropdown .p-dropdown-label {
+  font-size: 13px !important;
+  padding: 6px 10px !important;
+}
+
+.p-dropdown .p-dropdown-trigger {
+  width: 1.9em !important;
+}
+
+//define padding header table
+.p-datatable .p-datatable-thead > tr > th {
+  padding: 0.6rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+
+}
+
+//define padding body table
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.20rem 0.6rem !important;
+}
+
+
+.p-datatable .p-datatable-header {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 0.5rem !important;
+  font-weight: 600;
+}
+
+.p-datepicker {
+  width: 300px !important;
+}
+
+.p-datepicker table td {
+  padding: 2px !important;
+}
+
+.p-datepicker table td > span {
+  padding: 1px !important;
+  font-size: 12px !important;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.p-datepicker table th > span {
+  padding: 1px !important;
+  font-size: 12px !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+.p-datepicker .p-datepicker-header {
+  padding: 1px !important;
+  font-size: 14px !important;
+}
+
+.p-button {
+  color: #000 !important;
+  background: #fff !important;
+  border: 1px solid black !important;
+}
+
+
+
+.p-input-icon-left > .p-inputtext {
+  font-size: 13px !important;
+  padding: 10px 0 10px 2rem !important;
+  height: 25px !important;
+}
+
+.p-dropdown {
+  width: 100% !important;
+  padding: 0 !important;
+
+}
+
+.p-dropdown .p-dropdown-label {
+  font-size: 13px !important;
+}
+
+
+.card-header {
+  padding: 4px 10px !important;
+}
+
+
+.p-button.p-button-icon-only {
+  border: 1px solid #aeb0b3 !important;
+  padding: 6px !important;
+  height: 25px !important;
+
+  span {
+    color: #95989b !important;
+  }
+}
+
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 6px 15px !important;
+  font-size: 12px !important;
+}
+
+.main-table{
+  .p-calendar-w-btn .p-inputtext {
+    //width: 163px !important;
+  }
+
+
+  .p-calendar-w-btn .p-datepicker-trigger {
+    border: 1px solid #ced4da !important;
+    height: 37px !important;
+
+    span {
+      color: #495057 !important;
+    }
+  }
+
+  .p-calendar-w-btn .p-inputtext {
+    font-size: 13px !important;
+    height: 25px !important;
+  }
+}
+
+
+
+/****************Multi select ********************/
+.p-multiselect {
+  height: 26px !important;
+  width: 120px !important;
+}
+
+.p-multiselect .p-multiselect-label {
+  padding: 4px 10px !important;
+  font-size: 12px !important;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+  font-size: 12px !important;
+  padding: 5px !important;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+  font-size: 12px !important;
+  padding: 5px !important;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  font-size: 12px !important;
+  padding: 5px !important;
+}
+
+.p-multiselect .p-multiselect-panel {
+  left: -51px !important;
+}
+
+.p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-inputtext {
+
+  font-size: 13px !important;
+  padding: 5px !important;
+}
+
+.p-dropdown .p-dropdown-label {
+  padding: 2px !important;
+}
+
+.p-input-icon-left > i, .p-input-icon-right > i {
+  margin-top: 4px !important;
+  font-size: 13px !important;
+}
+
+
+.p-paginator .p-dropdown {
+  width: 70px !important;
+
+  .p-dropdown-panel {
+    position: absolute;
+    top: -110px !important;
+    left: 0;
+  }
+}
+
+
+.p-tooltip {
+  font-size: 10px !important;
+}
+
+
+.p-splitbutton .p-splitbutton-defaultbutton {
+  display: none !important;
+}
+
+.p-menu .p-menuitem-link {
+  padding: 0.4rem 0.5rem !important;
+  font-size: 14px !important;
+}
+
+.p-splitbutton .p-menu {
+  left: -162px !important;
+}
+
+.pi-file-pdf {
+  color: var(--bs-danger) !important;
+}
+
+.pi-file-excel {
+  color: var(--bs-success) !important;
+}
+
+
+//update field
+.field {
+  line-height: 10px !important;
+  margin-bottom: 25px !important;
+
+  label {
+    font-size: 13px !important;
+    margin-bottom: 5px !important;
+
+    width: 100% !important;
+  }
+
+  input {
+    width: 100% !important;
+  }
+
+  .p-dropdown {
+    width: 100% !important;
+    padding: 8px !important;
+  }
+
+}
+
+.field-under{
+  line-height: 10px !important;
+  margin-bottom: 0 !important;
+  label {
+    font-size: 13px !important;
+    margin-bottom: 5px !important;
+
+    width: 100% !important;
+  }
+
+  input {
+    width: 100% !important;
+  }
+
+  .p-dropdown {
+    width: 100% !important;
+    padding: 8px !important;
+  }
+}
+
+.field-passenger{
+  line-height: 10px !important;
+  margin-bottom: 15px !important;
+  label {
+    font-size: 13px !important;
+    margin-bottom: 5px !important;
+
+    width: 100% !important;
+  }
+
+  input {
+    width: 100% !important;
+  }
+
+  .p-dropdown {
+    width: 100% !important;
+    padding: 8px !important;
+  }
+}
+
+.p-input-icon-left > .p-inputtext {
+  font-size: 12px !important;
+}
+
+
+.p-dialog .p-dialog-header {
+  padding: 1rem !important;
+}
+
+
+.span-view {
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--primary-color)
+}
+
+
+.btn-success {
+  background-color: #14B8A6FF !important;
+  border: 1px solid #14B8A6FF
+}
+
+
+.p-datepicker table td > span {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+
+
+.field-form-element {
+  color: var(--blue-800);
+  font-weight: 400;
+  font-size: 16px !important;
+}
+
+
+.field-form-edit {
+  margin-top: -5px;
+  margin-left: 5px;
+  position: absolute;
+  color: var(--primary-color);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+
+.field-form-error {
+  // position: absolute;
+  margin-top: 5px;
+  font-size: 11px
+}
+
+.p-contextmenu {
+  width: 140px !important;
+}
+
+.p-contextmenu .p-menuitem-link {
+  padding: 0.45rem 0.5rem !important;
+  font-size: 13px !important;
+}
+
+
+
+element.style {
+}
+.p-component, .p-component * {
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+.p-tieredmenu {
+  width: 14rem !important;
+  font-size: 12px !important;
+}
+
+
+.p-tieredmenu-overlay {
+  left:-155px !important;
+}
+
+.warning-text{
+  color:#ffc400 !important;
+  font-size: 13px !important;
+}
+
+.primary-text{
+  color:var(--primary-color) !important;
+  font-size: 15px !important;
+}
+
+
+.p-autocomplete .p-autocomplete-panel {
+  min-width: 47% !important;
+  width: 95% !important;
+}
+

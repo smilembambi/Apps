@@ -1,0 +1,161 @@
+[
+  {
+    "id": 1,
+    "label": "Kouilou",
+    "areas": [
+      "Kakamoeka District",
+      "Madingo-Kayes District",
+      "Mvouti District"
+    ]
+  },
+  {
+    "id": 2,
+    "label": "Niari",
+    "areas": [
+      "Banda",
+      "Divénié",
+      "Kibangou",
+      "Kimongo",
+      "Londéla-Kayes",
+      "Louvakou",
+      "Mbinda",
+      "Moungoundou Nord",
+      "Moungoundou Sud",
+      "Moutamba",
+      "Mayoko",
+      "Nianga",
+      "Yaya",
+      "Dolisie",
+      "Mossendjo"
+    ]
+  },
+  {
+    "id": 3,
+    "label": "Lékoumou",
+    "areas": [
+      "Bambama District",
+      "Komono District",
+      "Sibiti District",
+      "Zanaga District"
+    ]
+  },
+  {
+    "id": 4,
+    "label": "Bouenza",
+    "areas": [
+      "Nkayi Commune",
+      "Boko-Songho District",
+      "Kayes District",
+      "Kingoué District",
+      "Loudima District",
+      "Madingou District",
+      "Mabombo District",
+      "Mfouati District",
+      "Mouyondzi District",
+      "Tsiaki District",
+      "Yamba District"
+    ]
+  },
+  {
+    "id": 5,
+    "label": "Pool",
+    "areas": [
+      "Boko District",
+      "Kindamba District",
+      "Kinkala District",
+      "Mayama District",
+      "Mindouli District",
+      "Ngabe District"
+    ]
+  },
+  {
+    "id": 6,
+    "label": "Plateaux",
+    "areas": [
+      "Abala District",
+      "Djambala District",
+      "Gamboma District",
+      "Lekana District"
+    ]
+  },
+  {
+    "id": 7,
+    "label": "Cuvette",
+    "areas": [
+      "Commune of Owando",
+      "Boundji District",
+      "Loukoléla District",
+      "Makoua District",
+      "Mbon District",
+      "Mossaka District",
+      "Ngoko District",
+      "Oyo District",
+      "Tchikapika District",
+      "Tokou District"
+    ]
+  },
+  {
+    "id": 8,
+    "label": "Cuvette-Ouest",
+    "areas": [
+      "Etoumbi District",
+      "Ewo District",
+      "Kelle District",
+      "Mbama District",
+      "Mbomo District",
+      "Okoyo District"
+    ]
+  },
+  {
+    "id": 9,
+    "label": "Sangha",
+    "areas": [
+      "Mokéko District",
+      "Ngbala District",
+      "Pikounda District",
+      "Sembé District",
+      "Souanké District"
+    ]
+  },
+  {
+    "id": 10,
+    "label": "Likouala",
+    "areas": [
+      "Liranga",
+      "Impfondo",
+      "Bétou",
+      "Dongou ",
+      "Enyellé ",
+      "Epena ",
+      "Bouanela"
+    ]
+  },
+  {
+    "id": 11,
+    "label": "Brazzaville",
+    "areas": [
+      "Centre-ville",
+      "Makélékélé",
+      "Bacongo",
+      "Poto-Poto",
+      "Moungali",
+      "Ouenzé",
+      "Talangaï",
+      "Mfilou",
+      "Madibou",
+      "Djiri"
+    ]
+  },
+  {
+    "id": 12,
+    "label": "Pointe-Noire",
+    "areas": [
+      "Patrice Emery Lumumba",
+      "Mvou-Mvou",
+      "Tié-Tié",
+      "Loandjili district",
+      "Mongo-Pokou district",
+      "Ngoyo district"
+    ]
+  }
+]

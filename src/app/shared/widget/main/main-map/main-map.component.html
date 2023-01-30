@@ -1,0 +1,211 @@
+<p-toast position="top-center" key="tc"></p-toast>
+
+<div class="row main-table table-main">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card" style="min-height:450px">
+      <div class="card-body" *ngIf="!loading">
+        <div *ngIf="!loading">
+          <div style="float:right !important;">
+
+            <app-main-button [label]="'Retour'"
+                             [icon]="'pi pi-arrow-left'" class="mr-1"
+                             [loading]="false"
+                             (sendAction)="back()"
+                             [class]="'btn-secondary'"
+                             [sizeButton]="'btn-xs'"
+            ></app-main-button>
+
+            <app-main-button [label]="'Modifier la localisation'"
+                             *ngIf="object?.location && false"
+                             [icon]="'pi pi-eye'" class="mr-1"
+                             [loading]="false"
+                             [class]="'btn-primary'"
+                             [sizeButton]="'btn-xs'"
+            ></app-main-button>
+
+            <app-main-button [label]="addChild? 'Cacher les églises filles' : 'Afficher les églises filles'"
+                             *ngIf="object?.location && origin == 'church'"
+                             [icon]="addChild?'pi pi-eye-slash' : 'pi pi-eye'" class="mr-1"
+                             [loading]="false"
+                             (sendAction)="openCloseChild()"
+                             [class]="'btn-secondary'"
+                             [sizeButton]="'btn-xs'"
+            ></app-main-button>
+
+            <app-main-button [label]="addChild? 'Cacher les églises proches ' : 'Afficher les églises proches'"
+                             *ngIf="object?.location && origin == 'user'"
+                             [icon]="addChild?'pi pi-eye-slash' : 'pi pi-eye'" class="mr-1"
+                             [loading]="false"
+                             (sendAction)="openCloseChurchNear()"
+                             [class]="'btn-secondary'"
+                             [sizeButton]="'btn-xs'"
+            ></app-main-button>
+
+            <app-main-button [label]="addMember? 'Cacher les membres' : 'Afficher les membres'"
+                             *ngIf="object?.location && origin == 'church'"
+                             [icon]="addMember?'pi pi-eye-slash' : 'pi pi-eye'" class="mr-1"
+                             [loading]="false"
+                             (sendAction)="openCloseMember()"
+                             [class]="'btn-secondary'"
+                             [sizeButton]="'btn-xs'"
+            ></app-main-button>
+
+
+            <app-main-button
+              *ngIf="!object?.location && stepSearch == 2"
+              [label]="'Enregistrer l\'emplacement'"
+              [icon]="'pi pi-save'"
+              [class]="'btn-success'"
+              (sendAction)="saveLocation()"
+            ></app-main-button>
+
+          </div>
+
+
+          <div style="display: flex">
+            <h6 class="card-title" style="display: flex">
+              <div style="font-size:25px; margin-top:-3px" class="{{icon}} mr-2"></div>
+              <div>
+                <span class="text-color-title"> {{ object?.label }}</span>
+              </div>
+            </h6>
+          </div>
+
+        </div>
+
+        <div class="table-main" style="margin-top:50px">
+
+          <!-- loading -->
+          <app-main-loading [message]="'Chargement...'" *ngIf="loading"></app-main-loading>
+
+          <!-- map -->
+          <div *ngIf="object?.location || stepSearch > 1">
+            <!--            <agm-map [latitude]="getLatitude()" [longitude]="getLongitude()" style="height: 450px">-->
+            <!--            </agm-map>-->
+
+            <google-map
+              height="500px"
+              width="100%"
+              (mapClick)="selectPositionByClick($event)"
+              [zoom]="zoom"
+              [center]="center"
+              [options]="options">
+              <map-marker #someMarker="mapMarker" *ngFor="let marker of markers; let i = index"
+                          [position]="marker.position"
+                          (mapClick)="openInfoWindow(someMarker, i, marker)"
+                          [options]="marker.options">
+
+                <map-info-window class="label">
+                  <div *ngIf="markerSelected" style="padding: 10px; font-size: 12px !important;">
+                    <div *ngIf="markerSelected.type == 'church'" style="line-height: 18px">
+                      <div><span style="font-size: 15px; font-weight: 600; color:#7000d7">{{markerSelected.object.label}}</span></div>
+                      <div style="margin-top:15px">Type d'église : <span style="font-weight: 600">{{ markerSelected.object?.typeChurch }}</span> </div>
+                      <div>Adresse : <span style="font-weight: 600">{{ markerSelected.object.address }}</span></div>
+                      <div>Ville : <span style="font-weight: 600">{{ markerSelected.object.city.label }}</span></div>
+                      <div>Pays :
+                        <img style="width: 14px; border-radius:50%; height: 14px; margin-right: 5px" #img alt=""
+                             src="https://flagcdn.com/{{ markerSelected.object.countryChurch?.alpha2Code.toLowerCase()}}.svg">
+                        <span style="font-weight: 600">{{ markerSelected.object.countryChurch.label }}</span></div>
+                    </div>
+
+                    <div *ngIf="markerSelected.type == 'member'" style="line-height: 18px">
+                      <div><span style="font-size: 15px; font-weight: 600; color:#7000d7">{{markerSelected.object.label}}</span></div>
+                      <div style="margin-top:15px">Téléphone : <span style="font-weight: 600">{{ markerSelected.object?.phone?.e164Number }}</span> </div>
+                      <div>EDM : <span style="font-weight: 600">{{ markerSelected.object.church.label }}</span></div>
+                      <div>Adresse : <span style="font-weight: 600">{{ markerSelected.object.address }}</span></div>
+                      <div>Ville : <span style="font-weight: 600">{{ markerSelected.object.city.label }}</span></div>
+
+                    </div>
+
+                    <div *ngIf="markerSelected.type != 'church' && markerSelected.type != 'member'">
+                      <strong>{{ markerSelected.object.label }}</strong>
+                    </div>
+                  </div>
+                </map-info-window>
+              </map-marker>
+            </google-map>
+
+          </div>
+
+          <!-- step one search -->
+          <div *ngIf="!object?.location && stepSearch == 0 " style="text-align:center">
+            <div>
+              <br><br><br>
+              <h2>
+                Aucun emplacement géographique <br>pour
+                <span *ngIf="origin =='church' ">
+                  <span  class="text-color-title">{{ object?.label }} </span>de {{ object?.city?.label }}.
+                </span>
+
+                <span *ngIf="origin =='user' ">
+                  <span  class="text-color-title">{{ object?.label }} </span>de {{ object?.church?.label }}.
+                </span>
+
+              </h2>
+            </div>
+
+            <div>
+              <br>
+              <h4>Voulez-vous la géolocaliser maintenant?</h4></div>
+            <div>
+              <br><br>
+              <app-main-button [label]="'OUI'"
+                               [icon]="'pi pi-check'" class="mr-1"
+                               [loading]="false"
+                               [class]="'btn-success'"
+                               [sizeButton]="'btn-xs'"
+                               (sendAction)="openSearch()"
+              ></app-main-button>
+              <app-main-button [label]="'NON, je veux revenir à la liste'"
+                               [icon]="'pi pi-arrow-left'" class="mr-1"
+                               [loading]="false"
+                               [class]="'btn-danger'"
+                               [sizeButton]="'btn-xs'"
+                               (sendAction)="back()"
+              ></app-main-button>
+
+            </div>
+          </div>
+
+          <!-- step two search -->
+          <div *ngIf="!object?.location && stepSearch == 1 " style="text-align:center">
+            <br><br>
+            <div>
+              <h2>
+                <span *ngIf="origin == 'church' ">
+                  Vous êtes à l'emplacement exact ou <br> se situe
+                   <span  class="text-color-title">{{ object?.label }}</span>?
+                </span>
+
+                <span *ngIf="origin == 'user' ">
+                  Vous êtes à la résidence de  <br>
+                   <span  class="text-color-title">{{ object?.label }}</span>?
+                </span>
+
+              </h2>
+            </div>
+            <div>
+              <br><br>
+              <app-main-button [label]="'OUI'"
+                               [icon]="'pi pi-check'" class="mr-1"
+                               [loading]="false"
+                               [class]="'btn-success'"
+                               [sizeButton]="'btn-xs'"
+                               (sendAction)="getCurrentPlace('oui')"
+              ></app-main-button>
+              <app-main-button [label]="'NON, je veux chercher sur la carte'"
+                               [icon]="'pi pi-arrow-left'" class="mr-1"
+                               [loading]="false"
+                               [class]="'btn-danger'"
+                               [sizeButton]="'btn-xs'"
+                               (sendAction)="getCurrentPlace('non')"
+              ></app-main-button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

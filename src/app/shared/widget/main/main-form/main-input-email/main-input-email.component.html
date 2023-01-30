@@ -1,0 +1,24 @@
+<div class="{{ origin != 'passenger' ? 'field' : 'field-passenger' }} " >
+  <label for="label">
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view'" (click)="changeState()"
+       style="font-weight: 300; cursor:pointer; margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element">{{field}}</span>
+  </div>
+
+  <input [(ngModel)]="field"
+         *ngIf="state=='edit'"
+         (ngModelChange)="changeField($event)"
+         (blur)="changeField(field); checkEmail()"
+         class="form-control-sm {{ isError ? 'ng-invalid ng-dirty' : ''}}"
+         style="width: 100%;"
+         id="label"
+         type="email"
+         aria-describedby="articleName-help"
+         pInputText/><br>
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

@@ -1,0 +1,236 @@
+<div class="row main-table table-main">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div>
+
+
+          <button [disabled]="loading" (click)="saveList()" style="float: right; margin-top: -5px" type="button"
+                  class="mr-2 btn btn-xs btn-success">
+            <i *ngIf="!loading" class="fas fa-save mr-2"></i>
+            <i *ngIf="loading" class="spinner-grow mr-2" style="width: 13px; height: 13px"></i>
+            Enregistrer
+          </button>
+
+
+          <button [disabled]="loading" (click)="back()" style="float: right; margin-top: -5px" type="button"
+                  class="mr-2 btn btn-xs btn-secondary">
+            <i class="fas fa-arrow-left mr-1"></i> Retour
+          </button>
+
+<!--          <button *ngIf="event?.message?._id" [disabled]="loading" (click)="isEdit=!isEdit"-->
+<!--                  style="float: right; margin-top: -5px" type="button"-->
+<!--                  class="mr-2 btn btn-xs btn-primary">-->
+<!--            <span *ngIf="!isEdit"><i class="fas fa-eye mr-1"></i> Mode visualisation</span>-->
+<!--            <span *ngIf="isEdit"><i class="fas fa-edit mr-1"></i> Mode Edition</span>-->
+<!--          </button>-->
+
+<!--          <button [disabled]="loading" (click)="download()" style="float: right; margin-top: -5px" type="button"-->
+<!--                  class="mr-2 btn btn-xs btn-danger">-->
+<!--            <i *ngIf="!loading" class="fas fa-file-pdf mr-1"></i>-->
+<!--            <i *ngIf="loading" class="spinner-grow mr-2" style="width: 13px; height: 13px"></i>-->
+<!--            Télécharger-->
+<!--          </button>-->
+
+
+          <div style="display: flex">
+            <h6 class="card-title" style="display: flex">
+              <div style="font-size:20px; margin-top:-3px" class="ri-list-ordered mr-2"></div>
+              <div>
+                <span>{{ title}}</span>
+              </div>
+            </h6>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <br><br>
+          <h1>Fiche d'activité</h1>
+        </div>
+        <div *ngIf="event" style="background-color: whitesmoke; padding: 20px; margin-top:20px; line-height:25px ">
+          <div class="row">
+            <div class="col-md-6">Eglise : <span style="font-weight: 700">{{ event.church.label }}</span></div>
+            <div class="col-md-6">Type d'évenement : <span style="font-weight: 700">{{ event.typeEvent.label }}</span>
+            </div>
+
+            <div class="col-md-6">Localisation : <span style="font-weight: 700">{{ event.church.city.label }}
+              / {{ event.church.city.country.label }}</span></div>
+            <div class="col-md-6">Nom d'évenement : <span style="font-weight: 700">{{ event.label }}</span></div>
+
+            <div class="col-md-6">Code : <span style="font-weight: 700">{{ event.church.codeObject }}</span></div>
+            <div class="col-md-6">Date d'évenement : <span
+              style="font-weight: 700">{{ event.dateEvent | date:'dd-MM-yyyy' }}</span></div>
+
+          </div>
+        </div>
+
+
+        <div class="table-main" *ngIf="!isEdit">
+
+
+          <!-- begin table -->
+          <div class="row" style="margin-top: 50px">
+            <div class="col-md-8">
+              <label>Charger les images de l'évenement</label><br>
+              <p-fileUpload [url]="uploadUrl"
+                            [showUploadButton]="false" [customUpload]="true"
+                            name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                            (onSelect)="getUpload($event)"
+                            [chooseLabel]="'Sélectionner les photos'"
+                            [cancelLabel]="'Supprimer les photos'"
+                            multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+              <div style="margin-top:5px" >
+                <img *ngFor="let image of images" (click)="openImage(image)"
+                     style="height: 100px; margin-right: 5px;" [src]="image" alt="image">
+              </div>
+
+            </div>
+            <div class="col-md-12"></div>
+            <div class="col-md-8 mt-4" *ngIf="event?.activitySheet">
+              <!-- input -->
+              <app-main-input
+                [field]="event.activitySheet.subject"
+                [id]="'message'"
+                (sendField)=" event.activitySheet.subject = $event"
+                [size]="'20'"
+                [isRequire]="true"
+                [label]="'Titre du message'"></app-main-input>
+
+            </div>
+            <div class="col-md-12"></div>
+
+            <div class="col-md-4" *ngIf="event?.activitySheet">
+
+              <app-main-auto-complete
+                [field]="event.activitySheet.driverObject"
+                (sendField)="event.activitySheet.driverObject = $event"
+                [options]="drivers"
+                [id]="'message'"
+                [label]="'Selectionner le conducteur'"></app-main-auto-complete>
+
+            </div>
+            <div class="col-md-4"   *ngIf="event?.activitySheet?.driverObject?._id == 'other'">
+              <!-- input -->
+              <app-main-input
+                [field]="event.activitySheet.driver"
+                [id]="'message'"
+                (sendField)=" event.activitySheet.driver = $event"
+                [size]="'20'"
+                [isRequire]="true"
+                [label]="'Autre conducteur'"></app-main-input>
+
+            </div>
+
+            <div class="col-md-4" *ngIf="false">
+              <!-- input -->
+              <app-main-input
+                [field]="event.activitySheet.subject"
+                [id]="'message'"
+                (sendField)=" event.activitySheet.subject = $event"
+                [size]="'20'"
+                [isRequire]="true"
+                [label]="'Titre du message'"></app-main-input>
+
+            </div>
+
+            <div class="col-md-12"></div>
+
+            <div class="col-md-2" *ngIf="event?.activitySheet">
+              <!-- select -->
+              <app-main-select
+                [field]="event.activitySheet.startTime"
+                [value]="event.activitySheet.startTime"
+                (sendField)="event.activitySheet.startTime=$event; "
+                [options]="times"
+                [action]='false'
+                [id]="'startTime'"
+                [label]="'Heure de début'"></app-main-select>
+            </div>
+
+            <div class="col-md-2" *ngIf="event?.activitySheet">
+              <app-main-select
+                [field]="event.activitySheet.endTime"
+                [value]="event.activitySheet.endTime"
+                (sendField)="event.activitySheet.endTime=$event; "
+                [options]="times"
+                [action]='false'
+                [id]="'endTime'"
+                [label]="'Heure de fin'"></app-main-select>
+
+            </div>
+
+            <div class="col-md-12">
+              <div>
+                <h4>Témoignages</h4>
+
+
+                <div class="mt-4" *ngIf="event?.activitySheet?.testimonials?.length > 0">
+
+                  <div class="row">
+
+                    <div  *ngFor="let test of event.activitySheet.testimonials"
+                          (click)="doTestimony(test,'view')"
+                          class="col-lg-3">
+
+                      <div class="card border border-success" style="padding:7px">
+                        <div class="card-header bg-transparent border-success">
+                          <h5 class="my-0 text-success"><i class="mdi mdi-check-all mr-3"></i>{{ test.name }}</h5>
+                        </div>
+                        <div class="card-body">
+
+                          <p class="card-text" [innerHTML]="test.testimony.slice(0,200) "></p>
+                          <div style="font-size:11px">{{ test.dateTestimony | date:'dd-MM-yyyy' }}</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <button [disabled]="loading" (click)="doTestimony()" type="button" class="mr-2 btn btn-lg btn-primary">
+                  <i *ngIf="!loading" class="fas fa-save mr-1"></i>
+                  <i *ngIf="loading" class="spinner-grow mr-2" style="width: 16px; height: 16px"></i>
+                  Ajouter un témoignage
+                </button>
+              </div>
+            </div>
+
+
+            <div class="col-md-12"></div>
+
+          </div>
+          <br><br>
+          <div style="margin-top: 15px">
+            <button [disabled]="loading" (click)="saveList()" type="button" class="mr-2 btn btn-lg btn-success">
+              <i *ngIf="!loading" class="fas fa-save mr-1"></i>
+              <i *ngIf="loading" class="spinner-grow mr-2" style="width: 16px; height: 16px"></i>
+              Enregistrer
+            </button>
+          </div>
+
+
+        </div>
+
+        <div *ngIf="isEdit" class="mt-5">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog class="image-modal"  header="Visualisation de la photo" [(visible)]="display" [modal]="true" [responsive]="true">
+ <img  [src]="currentImage" style="width: 100%;">
+
+</p-dialog>
+
+<p-toast></p-toast>

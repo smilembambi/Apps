@@ -1,0 +1,62 @@
+<div class="field" >
+  <label  >
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view'" (click)="changeState()"
+       style="font-weight: 300; cursor:pointer; margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element">{{field}}</span>
+  </div>
+
+  <label  for="inputTag">
+    <div class="hidden-input">
+      <input [(ngModel)]="field" #file
+             (ngModelChange)="changeField(file.files)"
+             (blur)="changeField(file.files)"
+             id="inputTag" type="file"/>
+    </div>
+  </label>
+
+  <div *ngIf="state=='edit'" class="p-inputgroup" style="margin-top: -10px;">
+    <span class="p-inputgroup-addon"><i class="pi pi-file"></i></span>
+    <input
+      #fileUp
+      (click)="file.click()"
+      [readOnly]="true"
+      [(ngModel)]="field"
+
+      class="{{ isError ? 'ng-invalid ng-dirty' : ''}}"
+      style="width: 100%; font-size: 13px; padding: 10px;"
+      [type]="'text'"
+      pInputText >
+    <span
+      (click)="clearFile()"
+      *ngIf="fileUpload"
+      class="p-inputgroup-addon"><i class="pi pi-times"></i></span>
+  </div>
+  <div *ngIf="state=='edit'" style="margin-top: 5px; font-size: 13px; font-weight: 700; color: var(--purple-900)">
+    {{ getNameFile() }}
+  </div>
+
+  <div *ngIf="state=='view'" style="margin-top: -10px">
+
+    <div *ngIf="haveFile()" style="margin-top: 5px" >
+      <a href="javascript:;" (click)="viewDoc()">
+        <div style="margin-top: -5px">
+          <i class="far fa-eye "></i>&nbsp;
+          <span>Visualisez l'actuel</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <div style="margin-top: 8px; font-size: 13px; color:#f44336" class="error-edit" *ngIf="errorFieldFile != ''">
+    {{ errorFieldFile }}
+  </div>
+
+<br>
+  <!-- oninput="this.type!='number' ? this.value=this.value.replace(/[^0-9]/g,'') : ''"-->
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

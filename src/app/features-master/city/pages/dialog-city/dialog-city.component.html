@@ -1,0 +1,101 @@
+<!-- view -->
+<div *ngIf="state=='edit' && action != 'add'" style=" position: absolute; float: right; right: 80px;   margin-top: -45px">
+  <span (click)="state='view'; changeHeader()" style="font-size: 14px; cursor: pointer; color: var(--primary-color)">
+    <i class="far fa-eye mr-1"></i> Visualiser</span>
+</div>
+
+<!-- edit zone -->
+<div class="row">
+
+  <div class="col-md-12" *ngIf="msgError!=''">
+    <ngb-alert [dismissible]="false" type="danger">
+      {{msgError}}
+    </ngb-alert>
+  </div>
+
+
+  <!-- label -->
+  <div class="col-md-12">
+    <app-main-input
+      [field]="city.label"
+      (sendField)="city.label=$event; msgError=''"
+      [state]="state"
+      (sendState)="state=$event; changeHeader()"
+      [size]="'20'"
+      [label]="'Ville'"></app-main-input>
+  </div>
+
+  <!-- code city -->
+  <div class="col-md-12">
+    <app-main-input
+      [field]="city.abbreviation"
+      (sendField)="city.abbreviation=$event"
+      [state]="state"
+      [maxlength]="3"
+      (sendState)="state=$event; changeHeader()"
+      [size]="'20'"
+      [label]="'Code ville'"></app-main-input>
+  </div>
+
+  <!-- region -->
+  <div class="col-md-12">
+    <app-main-input
+      [field]="city.region"
+      (sendField)="city.region=$event"
+      [state]="state"
+      (sendState)="state=$event; changeHeader()"
+      [size]="'20'"
+      [label]="'Region'"></app-main-input>
+  </div>
+
+
+
+  <!-- country -->
+  <div class="col-md-12">
+    <app-main-auto-complete
+      [field]="city.country"
+      (sendField)="getField($event)"
+      (sendState)="state =$event; changeHeader()"
+      [options]="countries"
+      [source]="'pays'"
+      [isRequire]="true"
+      [state]="state"
+      [action] = 'false'
+      [label]="'Pays'"></app-main-auto-complete>
+  </div>
+
+  <!-- save -->
+  <div *ngIf="state=='edit'" class="col-md-12 ">
+    <br>
+    <app-main-button [label]="'Enregistrer'"
+                     [icon]="'pi pi-save'"
+                     [loading]="loading"
+                     [disabled]="loading"
+                     [class]="'btn-primary'"
+                     (sendAction)="add()"
+    ></app-main-button>
+  </div>
+
+</div>
+
+<!-- view zone -->
+<div class="row" *ngIf="state=='view'">
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Date de création'"
+      [field]="city.createdAt | date:'dd-MM-yyyy hh:mm:ss'"
+    ></app-main-view-info>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-view-info
+      [label]="'Créé par'"
+      [field]="city?.createdBy?.person?.label"
+    ></app-main-view-info>
+  </div>
+
+  <div class="col-md-12">
+    <app-main-status [status]="city?.status"></app-main-status>
+  </div>
+
+</div>

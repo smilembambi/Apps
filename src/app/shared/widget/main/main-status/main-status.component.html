@@ -1,0 +1,26 @@
+<span *ngIf="origin != 'tag' && origin != 'notificationReceive' "  style="padding-bottom:5px" class="badge bg-{{
+                         status =='Traitement' ||
+                         status == 'En attente d\'envoi' ||
+                         status == 'En attente' ||
+                         status == 'Création' ||
+                         status == 'En voyage' ? 'warning' :
+                         status == 'Indisponible' ? 'secondary' :
+                         status == 'Cloturé'  ||
+                         status == 'Envoyée' ||
+                         status == 'Opérationnel' ||
+                         status ==  'Payer' ||
+                         status ==  'Acheté'  ||
+                         status ==  'Valider'  ? 'success' :
+                         status ==  'Effectué'  ? 'success-ef' :
+                         status == 'Désactivé'  ||
+                         status == 'Rejeter'   ? 'danger' :
+                         status == 'En cours d\'envoi' ||
+                         status == 'Validation' ||
+                         status == 'Utilisé' ? 'info'  :  'secondary' }}"> {{ status }}
+</span>
+
+
+<span  *ngIf="origin == 'notificationReceive'" style="padding-bottom:5px" class="badge bg-{{
+                         status  ? 'success'  :  'success' }}">
+  {{status  ? 'Lu'  :  'Lu' }}
+</span>

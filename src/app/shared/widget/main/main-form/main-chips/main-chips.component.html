@@ -1,0 +1,40 @@
+<div class="field main-chips">
+  <label for="label">
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view'"
+       (click)="changeState()"
+       style=" font-weight: 300; cursor: pointer;  margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element" *ngIf="id !='onBoardServices' "> {{field}} </span>
+    <span class="field-form-element">
+      <ul *ngFor="let f of field">
+        <ol style="padding: 1px 0">{{f.label}}</ol>
+      </ul>
+    </span>
+  </div>
+  <div *ngIf="state=='edit'" style="display:inline-flex !important; width: 100% !important; ">
+    <div style="{{ action ? 'width: 75%;' : 'width: 100%;'}}">
+
+      <p-multiSelect [options]="options"
+                     id="label"
+                     [(ngModel)]="field"
+                     [required]="isRequire"
+                     (ngModelChange)="changeField($event)"
+                     (blur)="changeField(field)"
+                      display="chip"></p-multiSelect>
+
+    </div>
+
+<!--    <div style="margin-top: 12px !important; font-size: 17px">-->
+<!--      <i class="ri-add-circle-fill ml-2 mr-1"></i>-->
+<!--      <i class="ri-edit-2-fill mr-1"></i>-->
+<!--      <i class="ri-table-line mr-1"></i>-->
+<!--    </div>-->
+  </div>
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+
+</div>
+

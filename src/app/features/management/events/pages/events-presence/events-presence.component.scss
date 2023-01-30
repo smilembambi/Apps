@@ -1,0 +1,43 @@
+button{
+  font-size: 11px !important;
+}
+.card-title {
+  padding: 0 !important;
+}
+
+
+.success {
+  color: #1abc9c !important;
+}
+
+.danger {
+  color: #f84848 !important;
+}
+
+.no-select {
+  color: #ccc !important;
+}
+
+
+::ng-deep .table-sm  {
+  padding: 1px !important;
+}
+td{
+  padding: 1px !important;
+}
+
+
+::ng-deep .p-button {
+  padding: 0.5rem 1rem !important;
+}
+
+::ng-deep .field-checkbox > label, .field-radiobutton > label {
+  margin-left: 0.5rem;
+  line-height: 1;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .field-checkbox, .field-radiobutton {
+   margin-bottom: 0.5rem;
+}

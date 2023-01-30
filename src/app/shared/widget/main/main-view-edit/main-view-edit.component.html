@@ -1,0 +1,256 @@
+<p-toast position="top-center" key="tc"></p-toast>
+
+<div class="row main-table table-main">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card" style="min-height:450px">
+      <div class="card-body">
+        <div *ngIf="!loading">
+          <div style="float:right !important;">
+            <app-main-button [label]="'Visualiser'" *ngIf="state=='edit' && id !='0'"
+                             [icon]="'pi pi-eye'" class="mr-1"
+                             [loading]="false"
+                             [disabled]="loadingSend"
+                             [class]="'btn-primary'"
+                             [sizeButton]="'btn-xs'"
+                             (sendAction)="state='view'; changeHeader()"
+            ></app-main-button>
+            <app-main-button [label]="'Retour'"
+                             [icon]="'pi pi-arrow-left'" class="mr-1"
+                             [loading]="false"
+                             [disabled]="loading || loadingSend"
+                             [class]="'btn-secondary'"
+                             [sizeButton]="'btn-xs'"
+                             (sendAction)="list()"
+            ></app-main-button>
+
+            <app-main-button
+              *ngIf=" state == 'view' "
+              [label]="'Supprimer'"
+              [icon]="'pi pi-save'"  class="mr-1"
+              [loading]="loadingSend"
+              [disabled]="loadingSend "
+              [class]="'btn-danger'"
+              (sendAction)="delete()"
+            ></app-main-button>
+
+            <app-main-button
+              *ngIf="state=='edit' && !(origin == 'trip' || origin == 'operator' || origin == 'fleet' || origin == 'driver')"
+              [label]="'Enregistrer'"
+              [icon]="'pi pi-save'"
+              [loading]="loadingSend"
+              [disabled]="loadingSend "
+              [class]="'btn-success'"
+              (sendAction)="save()"
+            ></app-main-button>
+
+            <app-main-button
+              *ngIf="(origin == 'trip' || origin == 'operator' || origin == 'fleet' || origin == 'driver') && state=='edit'"
+              [label]="this.step == groupForms.length-1 ? 'Enregistrer' : 'Suivant'"
+              [icon]="this.step == groupForms.length-1 ? 'pi pi-save' : 'pi pi-arrow-right'" class="mr-1"
+              [loading]="loadingSend"
+              [positionIcon]="'right'"
+              [class]="this.step == groupForms.length-1 ? 'btn-success' : 'btn-primary'"
+              (sendAction)="next()"
+            ></app-main-button>
+
+          </div>
+
+
+          <div style="display: flex">
+            <h6 class="card-title" style="display: flex">
+              <div style="font-size:25px; margin-top:-3px" class="{{icon}} mr-2"></div>
+              <div >
+                 <span class="text-color-title" *ngIf="parent?._id">{{parent.label}} : </span>
+                 <span> {{ getTitle() }}</span>
+
+              </div>
+            </h6>
+          </div>
+
+        </div>
+
+        <div class="table-main" style="margin-top:50px">
+
+          <!-- loading -->
+          <app-main-loading [message]="message" *ngIf="loading || loadingSend"></app-main-loading>
+
+
+          <!-- begin table -->
+          <div style="margin-top: 20px">
+            <div *ngIf="!loading && !loadingSend">
+              <!-- all without fleet, operator, trip, driver -->
+              <div class="row"
+                   *ngIf="origin != 'fleet' && origin != 'driver' && origin != 'operator' && origin != 'trip' ">
+
+                <div class="{{ origin == 'path' || origin == 'station' ? 'col-md-6' : 'col-md-12'}}">
+                  <!-- body -->
+                  <div *ngIf="(!loading && (id == '0' || object?._id )) || origin == 'passenger' ">
+
+                    <!-- edit zone -->
+                    <div class="row form-global" *ngIf="forms.length > 0">
+                      <div *ngFor="let form of forms" class="{{ form.sizeColumn }}">
+                        <app-main-form
+                          [form]="form"
+                          [errors]="errors"
+                          [origin]="origin"
+                          [state]="state"
+                          [isValidForm]="isValidForm"
+                          [objectId]="object?._id"
+                          [churchSelected] ="churchSelected"
+                          [ministriesMember]="ministriesMember"
+                          [typeChurch]="typeChurch"
+                          [parentId]="parentId"
+                          [parent]="parent"
+                          [listChurches]="listChurches"
+                          [cities]="cities"
+                          [users] ="users"
+                          [ministries]="ministries"
+                          [countries]="countries"
+                          [typeChurches] = "typeChurches"
+                          [listTypeEvents] = "listTypeEvents"
+                          [isStar]="isStar"
+
+                          (sendHeader)="changeHeader()"
+                          (sendState)="state=$event"
+                          (sendErrors)="getErrors($event)"
+                          (sendCheckEmail)="getCheckEmail($event)"
+                          (sendForm)="getResultForm(form,$event)"
+                          (sendChurch)="getChurchSending($event)"
+                          (sendChurchSelected)="churchSelected =$event"
+                          (sendMinistriesMember)="getMinistriesMember($event)"
+                          (sendTypeChurch)="typeChurch=$event"
+                          (sendIsStar)="getIsStar($event)"
+
+
+                          [countrySelected]="countrySelected"
+                          (sendCountrySelected)="getCountrySelected($event)"
+
+                          [parentChurchSelected]="parentChurchSelected"
+                          (sendParentChurchSelected)="getParentChurchSelected($event)"
+
+                        ></app-main-form>
+                      </div>
+                    </div>
+
+                    <!-- save zone -->
+                    <div class="row">
+                      <div *ngIf="state=='edit'" class="col-md-12 p-mt-2">
+                        <app-main-button [label]="'Retour'"
+                                         [icon]="'pi pi-arrow-left'" class="mr-2"
+                                         [loading]="false"
+                                         [disabled]="loading || loadingSend"
+                                         [class]="'btn-secondary'"
+                                         (sendAction)="list()"
+                                         *ngIf="origin != 'profile' && origin != 'passenger'"
+                        ></app-main-button>
+
+                        <app-main-button [label]="'Enregistrer'"
+                                         [icon]="'pi pi-save'" class="mr-2"
+                                         [loading]="loadingSend"
+                                         [disabled]="loadingSend"
+                                         [class]="'btn-success'"
+                                         *ngIf="origin != 'passenger'"
+                                         (sendAction)="save()"
+                        ></app-main-button>
+                      </div>
+                    </div>
+
+                    <!-- view zone -->
+                    <app-main-view-zone *ngIf="state=='view'"
+                                        [origin]="origin"
+                                        [object]="object"></app-main-view-zone>
+                  </div>
+                </div>
+
+                <div *ngIf="origin == 'path' || origin == 'station'" class="col-md-6">
+
+                </div>
+
+              </div>
+
+              <!-- processing of fleet, operator, trip, driver -->
+              <div class="row globalForm"
+                   *ngIf="origin == 'fleet' || origin == 'driver' || origin == 'operator' || origin == 'trip' ">
+                <div class="col-md-12">
+                  <div *ngIf="!loading && (id == '0' || object?._id ) ">
+
+                    <!-- tab -->
+                    <p-tabView [(activeIndex)]="step" styleClass="tabview-custom" *ngIf="groupForms.length > 0">
+
+                      <p-tabPanel header="Information" *ngFor="let groupForm of groupForms"
+                                  [disabled]="!groupForm.status && !object._id">
+                        <!--    [disabled]="!groupForm.status && !object._id"       >-->
+
+                        <ng-template pTemplate="header">
+                          <i class="ri-brush-3-line mr-2" style="font-size: 17px"></i>
+                          <span>{{ groupForm.label }}</span>
+                        </ng-template>
+
+                        <div class="row form-global">
+
+                          <div *ngFor="let form of groupForm.forms" class="{{ form.sizeColumn }}">
+                            <app-main-form
+
+                              (sendCheckEmail)="getCheckEmail($event)"
+
+                              (sendForm)="getResultForm(form,$event)"
+                              (sendHeader)="changeHeader()"
+                              (sendState)="state=$event"
+                              [errors]="errors"
+                              [form]="form"
+                              [groupForms]="groupForms"
+                              [isValidForm]="isValidForm"
+                              [objectId]="object?._id"
+                              [origin]="origin"
+                              [state]="state"
+                            ></app-main-form>
+
+                          </div>
+                        </div>
+                      </p-tabPanel>
+
+                    </p-tabView>
+
+                    <!-- save zone -->
+                    <div class="row" style="padding: 0 15px">
+                      <div *ngIf="state=='edit'" class="col-md-12">
+
+                        <app-main-button [label]="'Précedent'"
+                                         *ngIf="isPrecedent()"
+                                         [icon]="'pi pi-arrow-left'" class="mr-2"
+                                         [loading]="loadingSend"
+                                         [disabled]="loading || loadingSend"
+                                         [class]="'btn-secondary'"
+                                         (sendAction)="before()"
+                        ></app-main-button>
+                        <app-main-button [label]="this.step == groupForms.length-1 ? 'Enregistrer' : 'Suivant'"
+                                         [icon]="this.step == groupForms.length-1 ? 'pi pi-save' : 'pi pi-arrow-right'"
+                                         class="mr-2"
+                                         [loading]="loadingSend"
+                                         [disabled]="loadingSend"
+                                         [positionIcon]="'right'"
+                                         [class]="this.step == groupForms.length-1 ? 'btn-success' : 'btn-primary'"
+                                         (sendAction)="next()"
+                        ></app-main-button>
+
+                      </div>
+                    </div>
+
+                    <!-- view zone -->
+                    <div style="{{ isGroupFormOrigin.includes(origin) ? 'margin-left:15px' : ''}}">
+                      <app-main-view-zone *ngIf="isViewZOne()"
+                                          [origin]="origin"
+                                          [object]="object"></app-main-view-zone>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

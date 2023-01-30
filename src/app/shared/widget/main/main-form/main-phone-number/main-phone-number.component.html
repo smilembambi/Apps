@@ -1,0 +1,39 @@
+<div  class="{{ origin != 'passenger' ? 'field' : 'field-passenger' }}  {{ isError ? 'error-phone' : ''}} " >
+  <label for="label" >
+    {{ label }}
+    <i *ngIf="state=='view'  && canEdit()" (click)="changeState()" class="fa fa-pencil field-form-edit"></i>
+  </label><br>
+  <div *ngIf="state=='view'"
+       (click)="changeState()"
+       style="font-weight: 300; cursor:pointer; margin-top:2px; {{'font-size:'+size+'px'}};">
+    <span class="field-form-element">{{field?.e164Number}}</span>
+  </div>
+
+  <ngx-intl-tel-input
+    *ngIf="state=='edit'"
+    id="label"
+    (ngModelChange)="changeField($event)"
+    (blur)="changeField(field)"
+    class="phone-field"
+    [preferredCountries]="[CountryISO.CongoRepublicCongoBrazzaville,
+                           CountryISO.CongoDRCJamhuriYaKidemokrasiaYaKongo]"
+    [enableAutoCountrySelect]="false"
+    [enablePlaceholder]="true"
+    [customPlaceholder]="'Téléphone'"
+    [searchCountryFlag]="true"
+    [separateDialCode]="true"
+    [(ngModel)]="field"
+    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+    [selectFirstCountry]="true"
+    [selectedCountryISO]="CountryISO.CongoRepublicCongoBrazzaville"
+    [maxLength]="maxLengthPhoneNumber"
+    [phoneValidation]="true"
+    [numberFormat]="PhoneNumberFormat.National"
+
+  ></ngx-intl-tel-input>
+
+ <br>
+  <div *ngIf="isError" id="username2-help" class="p-error block field-form-error" >
+    {{ message }}
+  </div>
+</div>

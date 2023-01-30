@@ -1,0 +1,17 @@
+
+
+.form-global {
+  ::ng-deep .p-dropdown .p-dropdown-panel {
+    max-height: 190px !important;
+  }
+
+
+  ::ng-deep .p-dropdown-items-wrapper {
+    max-height: 190px !important;
+  }
+
+  ::ng-deep .p-dropdown{
+    padding: 10px 8px !important;
+  }
+}
+

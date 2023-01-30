@@ -1,0 +1,240 @@
+<!-- void -->
+<div *ngIf="form.type=='void'"></div>
+
+
+<!--<div *ngIf="operatorSimoway && origin == 'user' && form.id == 'operator'">-->
+<!--  {{ operatorSimoway.label }}-->
+<!--</div>-->
+
+<!-- select -->
+<app-main-select
+  *ngIf="form.type=='select' && isSelect()"
+  [field]="form.value"
+  [isStory]="isStory"
+  [value]="form.value"
+  (sendField)="form.value=$event; checkSelect($event) "
+  (sendState)="changeHeader($event)"
+  [options]="form.options"
+  [state]="state"
+  [origin]="origin"
+
+  [objectId]="objectId"
+  [action] = 'false'
+  [id]="form.id"
+  [editable]="form.editable"
+  [isRequire]="form.isRequire"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-select>
+
+<!-- input -->
+<app-main-input
+  *ngIf="form.type== 'input' && isInput()"
+  [field]="form.value"
+  [isStory]="isStory"
+  [state]="state"
+  [objectId]="objectId"
+  [id]="form.id"
+  [origin]="origin"
+  (sendField)=" change($event)"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [type]="form.sType"
+  [errors]="errors"
+  [isRequire]="form.isRequire"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-input>
+
+<!-- input number -->
+<app-main-input-number
+  *ngIf="form.type== 'input-number' && isInputNumber()"
+  [field]="form.field"
+  [isStory]="isStory"
+  [value]="form.value"
+  [state]="state"
+  [max]="form.max"
+  [id]="form.id"
+  [objectId]="objectId"
+  [icon]="form.icon"
+  [origin]="origin"
+  (sendField)="change($event)"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [type]="form.sType"
+  [errors]="errors"
+  [isRequire]="form.isRequire"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-input-number>
+
+<!-- input file -->
+<app-main-input-file
+  *ngIf="form.type== 'input-file' && isInputFile()"
+  [value]="form.value"
+  [isStory]="isStory"
+  [state]="state"
+  (sendField)=" change($event)"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [type]="form.sType"
+
+  [errors]="errors"
+  [origin]="origin"
+  [isRequire]="form.isRequire"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  (sendFile)="getFile($event)"
+  [id]="form.id"
+  [label]="form.label"></app-main-input-file>
+
+<!-- input mask -->
+<app-main-input-mask
+  *ngIf="form.type== 'input-mask' && isInputMask()"
+  [field]="form.value"
+  [isStory]="isStory"
+  [id]="form.id"
+  [state]="state"
+  (sendField)=" change($event)"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [type]="form.sType"
+  [errors]="errors"
+  [mask]="form.mask"
+  [origin]="origin"
+  [disabled]="getDisabled()"
+  [placeholder]="form.placeholder"
+  [slotChar]="form.slotChar"
+  [isRequire]="form.isRequire"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+
+  [label]="form.label"></app-main-input-mask>
+
+<!-- date -->
+<app-main-date
+  *ngIf="form.type== 'date' && isDate()"
+  [field]="form.value"
+  [isStory]="isStory"
+  [state]="state"
+  [id]="form.id"
+  (sendField)=" change($event)"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [type]="form.sType"
+  [max]="form.max"
+  [min]="form.min"
+  [errors]="errors"
+  [origin]="origin"
+
+  [selectionMode]="getSelectMode()"
+  [isRequire]="isDateRequire()"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-date>
+
+<!-- phone -->
+<app-main-phone-number
+  *ngIf="form.type== 'phone' && isPhone()"
+  [field]="form.value"
+  [isStory]="isStory"
+  (sendField)="change($event)"
+  [state]="state"
+  (sendState)="changeHeader($event)"
+  [size]="'20'"
+  [id]="form.id"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-phone-number>
+
+<!-- email -->
+<app-main-input-email
+  *ngIf="form.type== 'email' && isInput()"
+  [field]="form.value"
+  [isStory]="isStory"
+  (sendField)="change($event)"
+  (sendCheckEmail)="getCheckEmail($event)"
+  [state]="state"
+  [origin]="origin"
+  [id]="form.id"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+  (sendState)="changeHeader($event)"
+  (sendErrors)="errors = $event"
+  [size]="'20'"
+  [label]="form.label"></app-main-input-email>
+
+<!-- autocomplete -->
+<app-main-auto-complete
+  *ngIf="form.type== 'autocomplete'  && isAutocomplete() "
+  [field]="form.value"
+  [isStory]="isStory"
+  (sendField)="change($event)"
+  (sendState)="changeHeader($event)"
+  [options]="form.options"
+  [state]="state"
+  [multiple]="form.multiple"
+  [origin]="origin"
+  [disabled]="isAutocompleteDisabled()"
+  [action] = 'form.action'
+  [source]="form.field"
+  [id]="form.id"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-auto-complete>
+
+
+
+<!-- chips -->
+<app-main-chips
+  #mainChips
+  *ngIf="form.type== 'chips' && isChips()"
+  [field]="form.value"
+
+  [isStory]="isStory"
+  [id]="form.id"
+  [objectId]="objectId"
+  (sendField)="change($event)"
+  (sendState)="changeHeader($event)"
+  [options]="form.options"
+  [state]="state"
+  [action] = 'form.action'
+  [source]="form.field"
+  [origin]="origin"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-chips>
+
+
+<!-- editor -->
+<app-main-editor
+  *ngIf="form.type== 'editor' && isEditor()"
+  [state]="state"
+  [isStory]="isStory"
+  [size]="'15'"
+  [origin]="origin"
+  [id]="form.id"
+  (sendState)="changeHeader($event)"
+  [field]="form.value"
+  (sendField)="change($event)"
+  [errors]="errors"
+  [isValidForm]="isValidForm"
+  (sendErrors)="errors = $event"
+  [label]="form.label"></app-main-editor>
+
+
+
+<!-- under trips -->
+<div *ngIf="origin=='trip' && form.group == 'Sous voyages' && groupForms">
+
+</div>
+
+<!-- class and price -->
+<div *ngIf="origin=='trip' && form.group == 'Classe et prix' && groupForms">
+
+</div>
